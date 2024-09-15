@@ -8,7 +8,7 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js"
+    "start": "node ./src/receptor.js"
   },
   "author": "",
   "license": "ISC"
