@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "name": "project-web-ii",
+  "version": "1.0.0",
+  "description": "Projeto criado para avaliação 1 da aula de desenvolvimento de aplicações II curso ciencia da computação - unesc",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./src/receptor.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
