@@ -1,13 +1,13 @@
 const express = require('express');
-const receptor = express();
+const app = express();
 const controllers = require('./controllers/roteador.js');
 const swaggerDocs = require('./swagger');
 
-receptor.use(express.json());
+app.use(express.json());
+app.use('/professores', controllers);  // Certifique-se de que a rota está correta
 
-// Iniciar o servidor apenas uma vez
-receptor.listen(8080, function () {
-    console.log('Aplicação executando na porta 8080!');
+swaggerDocs(app);
+
+app.listen(8080, () => {
+    console.log('Aplicação rodando na porta 8080');
 });
-
-swaggerDocs(receptor);
