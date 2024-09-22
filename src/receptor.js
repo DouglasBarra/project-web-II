@@ -1,18 +1,13 @@
-const express = require('express')
-const receptor = express()
-const controllers = require('./controllers/roteador.js')
+const express = require('express');
+const app = express();
+const controllers = require('./controllers/roteador.js');
+const swaggerDocs = require('./swagger');
 
-receptor.use(function(req, res, next){
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    res.setHeader("Access-Control-Allow-Headers", "content-type");
-    res.setHeader("Content-Type", "application/json");
-    res.setHeader("Access-Control-Allow-Credentials", true);
-    next();
-   })
+app.use(express.json());
+app.use('/professores', controllers);  // Certifique-se de que a rota está correta
 
-receptor.use('/', controllers)
+swaggerDocs(app);
 
-receptor.listen(8080, function () { 
-    console.log('Aplicação executando na porta 8080!');
-    })
+app.listen(8080, () => {
+    console.log('Aplicação rodando na porta 8080');
+});
