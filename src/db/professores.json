@@ -1,0 +1,18 @@
+[
+  {
+    "id": "2f01a2a2-47be-4f19-86b4-15fb624ca256",
+    "name": "Winton Blake",
+    "specialty": "Fisioterapeuta",
+    "contact": "wb.fisio@gmail",
+    "phone_number": "48 9696 5858",
+    "status": "on"
+  },
+  {
+    "id": "e08cbd39-bd23-4ba0-87d1-e3f761bc14de",
+    "name": "Gabriel",
+    "specialty": "Mathematics",
+    "contact": "gabriel@gmail",
+    "phone_number": "48 2525 5858",
+    "status": "on"
+  }
+]
