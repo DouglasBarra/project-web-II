@@ -3,10 +3,12 @@ const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 const professoresRoute = require('./routes/professorRoute');
+const alunosRoute = require('./routes/alunoRoute')
 
 app.use(express.json());
 
 app.use('/api', professoresRoute);
+app.use('/api', alunosRoute)
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
