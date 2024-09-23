@@ -1,37 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const ProfessoresController = require('../controllers/professorController');
+const ProfissionalController = require('../controllers/profissionalController');
 
 /**
  * @swagger
  * components:
  *   schemas:
- *     Professor:
+ *     Profissional:
  *       type: object
  *       required:
  *         - name
  *         - specialty
  *         - contact
- *         - phone_number
+ *         - phone_number  
  *       properties:
  *         id:
  *           type: string
- *           description: ID único do professor
+ *           description: ID único do profissional
  *         name:
  *           type: string
- *           description: Nome do professor
+ *           description: Nome do profissional
  *         specialty:
  *           type: string
- *           description: Especialidade do professor
+ *           description: Especialidade do profissional
  *         contact:
  *           type: string
- *           description: Contato (email) do professor
+ *           description: Contato (email) do profissional
  *         phone_number:
  *           type: string
- *           description: Número de telefone do professor
+ *           description: Número de telefone do profissional
  *         status:
  *           type: string
- *           description: Status atual do professor (on/off)
+ *           description: Status atual do profissional (on/off)
  *       example:
  *         name: "Winton Blake"
  *         specialty: "Fisioterapeuta"
@@ -43,50 +43,50 @@ const ProfessoresController = require('../controllers/professorController');
 /**
  * @swagger
  * tags:
- *   name: Professores
- *   description: Gerenciamento de professores
+ *   name: Profissionais
+ *   description: Gerenciamento de profissionais
  */
 
 /**
  * @swagger
- * /api/professores:
+ * /api/profissionais:
  *   get:
- *     summary: Retorna a lista de todos os professores
- *     tags: [Professores]
+ *     summary: Retorna a lista de todos os profissionais
+ *     tags: [Profissionais]
  *     responses:
  *       200:
- *         description: A lista de professores
+ *         description: A lista de profissionais
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Professor'
+ *                 $ref: '#/components/schemas/Profissional'
  */
-router.get('/professores', ProfessoresController.getAll);
+router.get('/profissionais', ProfissionalController.getAll);
 
 /**
  * @swagger
- * /api/professores:
+ * /api/profissionais:
  *   post:
- *     summary: Cria um novo professor
- *     tags: [Professores]
+ *     summary: Cria um novo profissional
+ *     tags: [Profissionais]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Professor'
+ *             $ref: '#/components/schemas/Profissional'
  *     responses:
  *       201:
- *         description: Professor criado com sucesso
+ *         description: Profissional criado com sucesso
  *         content:
  *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Professor'
+ *             schema: 
+ *               $ref: '#/components/schemas/Profissional'
  *       400:
  *         description: Dados inválidos
  */
-router.post('/professores', ProfessoresController.create);
+router.post('/profissionais', ProfissionalController.create);
 
 module.exports = router;
