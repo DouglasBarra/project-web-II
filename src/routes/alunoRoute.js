@@ -94,4 +94,60 @@ router.get('/alunos', AlunosController.getAll);
  */
 router.post('/alunos', AlunosController.create);
 
+/**
+ * @swagger
+ * /api/alunos/{id}:
+ *   put:
+ *     summary: Atualiza um aluno existente
+ *     tags: [Alunos]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do aluno a ser atualizado
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Aluno'
+ *     responses:
+ *       200:
+ *         description: Aluno atualizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Aluno'
+ *       404:
+ *         description: Aluno não encontrado
+ */
+router.put('/alunos/:id', AlunosController.update);
+
+/**
+ * @swagger
+ * /api/alunos/{id}:
+ *   delete:
+ *     summary: Deleta um aluno existente
+ *     tags: [Alunos]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do aluno a ser deletado
+ *     responses:
+ *       200:
+ *         description: Aluno deletado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Aluno'
+ *       404:
+ *         description: Aluno não encontrado
+ */
+router.delete('/alunos/:id', AlunosController.delete);
+
 module.exports = router;

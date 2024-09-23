@@ -26,6 +26,39 @@ const AlunosService = {
 
     fs.writeFileSync(dbPath, JSON.stringify(alunos, null, 2));
     return novoAluno;
+  },
+
+  update: (id, alunoData) => {
+    const data = fs.readFileSync(dbPath, 'utf-8');
+    const alunos = JSON.parse(data);
+
+    const alunoIndex = alunos.findIndex(aluno => aluno.id === id);
+
+    if (alunoIndex === -1) {
+      throw new Error('Aluno não encontrado');
+    }
+
+    // Atualiza os campos do aluno encontrado
+    alunos[alunoIndex] = { ...alunos[alunoIndex], ...alunoData };
+
+    fs.writeFileSync(dbPath, JSON.stringify(alunos, null, 2));
+    return alunos[alunoIndex];
+  },
+
+  delete: (id) => {
+    const data = fs.readFileSync(dbPath, 'utf-8');
+    const alunos = JSON.parse(data);
+
+    const alunoIndex = alunos.findIndex(aluno => aluno.id === id);
+
+    if (alunoIndex === -1) {
+      throw new Error('Aluno não encontrado');
+    }
+
+    const alunoRemovido = alunos.splice(alunoIndex, 1);
+
+    fs.writeFileSync(dbPath, JSON.stringify(alunos, null, 2));
+    return alunoRemovido;
   }
 };
 
