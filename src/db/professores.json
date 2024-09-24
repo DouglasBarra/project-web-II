@@ -8,5 +8,15 @@
     ],
     "contact": "pedro@gmail",
     "status": "on"
+  },
+  {
+    "id": "15f6022a-0d0b-48be-9239-1e60da37092a",
+    "name": "Pedro",
+    "schoolDisciplines": [
+      "Artes",
+      "Português"
+    ],
+    "contact": "pedro@gmail",
+    "status": "on"
   }
 ]
