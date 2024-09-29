@@ -1,8 +1,9 @@
 const { v4: uuidv4 } = require('uuid');
 
 class Evento {
-    constructor(description, comments, date){
+    constructor(name, description, comments, date){
         this.id = uuidv4();
+        this.name = name;
         this.description = description;
         this.comments = comments;
         this.date = date;
