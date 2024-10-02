@@ -6,7 +6,7 @@ const AgendamentosController = require('../controllers/AgendamentosController.js
  * @swagger
  * components:
  *   schemas:
- *     Agendamentos:
+ *     Agendamento:
  *       type: object
  *       required:
  *         - code_number
@@ -57,7 +57,7 @@ const AgendamentosController = require('../controllers/AgendamentosController.js
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/agendamentos'
+ *                 $ref: '#/components/schemas/Agendamentos'
  */
 router.get('/agendamentos', AgendamentosController.getAll);
 
@@ -83,7 +83,7 @@ router.get('/agendamentos', AgendamentosController.getAll);
  *       400:
  *         description: Dados inválidos
  */
-router.post('agendamentos', AgendamentosController.create);
+router.post('agendamentos/:id', AgendamentosController.create);
 
 /**
  * @swagger
@@ -103,14 +103,14 @@ router.post('agendamentos', AgendamentosController.create);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Agendametos.js'
+ *             $ref: '#/components/schemas/Agendamentos'
  *     responses:
  *       200:
  *         description: Agendamento atualizado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Agendamentos.js'
+ *               $ref: '#/components/schemas/Agendamentos'
  *       404:
  *         description: Agendamento não encontrado
  *       400:
