@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 
-class Profissional {
+class Profissionais {
   constructor(name, specialty, contact, phone_number, status = 'on') {
     this.id = uuidv4(); 
     this.name = name;
@@ -11,4 +11,4 @@ class Profissional {
   }
 }
 
-module.exports = Profissional;
+module.exports = Profissionais;

@@ -1,4 +1,4 @@
-const AlunosService = require('../services/alunoService');
+const AlunosService = require('../services/alunosService.js');
 
 const AlunosController = {
   getAll: (req, res) => {

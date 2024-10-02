@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const ProfessoresController = require('../controllers/professorController');
+const ProfessoresController = require('../controllers/professoresController');
 
 /**
  * @swagger
  * components:
  *   schemas:
- *     Professor:
+ *     Professores:
  *       type: object
  *       required:
  *         - name

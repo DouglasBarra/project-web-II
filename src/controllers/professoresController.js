@@ -1,4 +1,4 @@
-const ProfessoresSerive = require('../services/professorService');
+const ProfessoresSerive = require('../services/professoresService.js');
 
 const ProfessorController = {
   getAll: (req, res) => {

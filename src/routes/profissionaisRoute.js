@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const ProfissionalController = require('../controllers/profissionalController');
+const ProfissionaisController = require('../controllers/profissionaisController.js');
 
 /**
  * @swagger
  * components:
  *   schemas:
- *     Profissional:
+ *     Profissionais:
  *       type: object
  *       required:
  *         - name
@@ -63,7 +63,7 @@ const ProfissionalController = require('../controllers/profissionalController');
  *               items:
  *                 $ref: '#/components/schemas/Profissional'
  */
-router.get('/profissionais', ProfissionalController.getAll);
+router.get('/profissionais', ProfissionaisController.getAll);
 
 /**
  * @swagger
@@ -87,7 +87,7 @@ router.get('/profissionais', ProfissionalController.getAll);
  *       400:
  *         description: Dados inválidos
  */
-router.post('/profissionais', ProfissionalController.create);
+router.post('/profissionais', ProfissionaisController.create);
 
 /**
  * @swagger
@@ -120,7 +120,7 @@ router.post('/profissionais', ProfissionalController.create);
  *       400:
  *         description: Dados inválidos
  */
-router.put('/profissionais/:id', ProfissionalController.update);
+router.put('/profissionais/:id', ProfissionaisController.update);
 
 /**
  * @swagger
@@ -141,6 +141,6 @@ router.put('/profissionais/:id', ProfissionalController.update);
  *       404:
  *         description: Profissional não encontrado
  */
-router.delete('/profissionais/:id', ProfissionalController.delete);
+router.delete('/profissionais/:id', ProfissionaisController.delete);
 
 module.exports = router;
