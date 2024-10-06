@@ -1,11 +1,11 @@
 const express = require('express');
-const router = express.Router()
+const router = express.Router();
 const EventosController = require('../controllers/eventosController');
 
 /**
  * @swagger
  *  components:
-*   schemas:
+ *   schemas:
  *     Evento:
  *       type: object
  *       required:
@@ -20,7 +20,7 @@ const EventosController = require('../controllers/eventosController');
  *         name:
  *           type: string
  *           description: Nome do evento
- *         Description:
+ *         description:
  *           type: string
  *           description: Descrição simples do evento
  *         comments:
@@ -32,9 +32,9 @@ const EventosController = require('../controllers/eventosController');
  *           description: Data do evento
  *       example:
  *         name: "Visita da Unesc"
- *         description: "Visitação dos alunos da Unesc a Associação"
+ *         description: "Visitação dos alunos da Unesc à Associação"
  *         comments: "Visita feita com professores e alunos"
- *         date: "22-06-2024"
+ *         date: "2024-06-22"
  */
 
 /**
