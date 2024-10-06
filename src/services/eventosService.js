@@ -3,7 +3,7 @@ const path = require('path');
 const dbPath = path.join(_dirname, '../db/eventos.json');
 const Evento = require('../models/eventosModel');
 
-const EventoService = {
+const EventosService = {
     getAll: () =>{
         const data = fs.readFileSync(dbPath, 'utf-8');
         return JSON.parse(data);
@@ -15,7 +15,7 @@ const EventoService = {
 
         const novoEvento = new Evento(
             eventoData.name,
-            evento.Data.description,
+            eventoData.description,
             eventoData.comments,
             eventoData.date,
         );
@@ -30,33 +30,33 @@ const EventoService = {
         const data = fs.readFileSync(dbPath, 'utf-8');
         const eventos = JSON.parse(data);
 
-        const index = eventos.findIndex(evento => evento.id == id);
+        const eventoIndex = eventos.findIndex(evento => evento.id == id);
 
-        if (index === -1) {
+        if (eventoIndex === -1) {
             throw new Error('Evento não encontrado');
         }
 
-        eventos[index] = { ...eventos[index], ...eventoData };
+        eventos[eventoIndex] = { ...eventos[eventoIndex], ...eventoData };
 
         fs.writeFileSync(dbPath, JSON.stringify(eventos, null, 2));
-        return eventos[index];
+        return eventos[eventoIndex];
     },
 
     delete: (id) => {
         const data = fs.readFileSync(dbPath, 'utf-8');
         const eventos = JSON.perse(data);
 
-        const index = eventos.findIndex(evento => evento.id ===id);
+        const eventoIndex = eventos.findIndex(evento => evento.id ===id);
 
-        if (index === -1) {
+        if (eventoIndex === -1) {
             throw new Error('Evento não encontrado');
         }
 
-        const [eventoRemovido] = eventos.splice(index, 1);
+        const [eventoRemovido] = eventos.splice(eventoIndex, 1);
 
         fs.writeFileSync(dbPath, JSON.stringify(eventos, null, 2));
         return eventoRemovido;
     }
 };
 
-module.exports = EventoService;
+module.exports = EventosService;

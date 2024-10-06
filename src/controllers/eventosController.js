@@ -1,5 +1,4 @@
 const EventosService = require('../services/eventosService.js');
-const { update } = require('./eventosController');
 
 const EventosController = {
     getAll: (req, res) => {
