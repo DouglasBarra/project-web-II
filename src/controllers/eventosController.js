@@ -1,11 +1,11 @@
 const EventosService = require('../services/eventosService.js');
-const { update } = require('./profissionaisController');
+const { update } = require('./eventosController');
 
 const EventosController = {
     getAll: (req, res) => {
         try {
-            const professores = ProfesspresService.getAll();
-            res.json(professores);
+            const eventos = EventosService.getAll();
+            res.json(eventos);
         }   catch (error) {
             res.status(500).json({ error: 'Erro ao buscar eventos'});   
         }
@@ -30,7 +30,7 @@ const EventosController = {
             if (error.message === 'Evento não encontrado') {
                 res.status(404).json({ error: 'Evento não encontrado.'});
             } else {
-                res.status(500).json({ error: 'Erro ao atualizar professor.'});
+                res.status(500).json({ error: 'Erro ao atualizar evento.'});
             }
         }
     },
