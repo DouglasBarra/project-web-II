@@ -4,7 +4,7 @@ const dbPath = path.join(__dirname, '../db/eventos.json');
 const Evento = require('../models/eventosModel');
 
 const EventosService = {
-    getAll: () =>{
+    getAll: () => {
         const data = fs.readFileSync(dbPath, 'utf-8');
         return JSON.parse(data);
     },
