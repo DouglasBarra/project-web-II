@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const dbPath = path.join(_dirname, '../db/eventos.json');
-const Evento = require('../models/eventoModel');
+const Evento = require('../models/eventosModel');
 
 const EventoService = {
     getAll: () =>{
