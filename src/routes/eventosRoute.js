@@ -4,7 +4,7 @@ const EventosController = require('../controllers/eventosController');
 
 /**
  * @swagger
- *  componentes:
+ *  components:
 *   schemas:
  *     Evento:
  *       type: object
