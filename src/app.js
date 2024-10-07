@@ -14,7 +14,8 @@ app.use('/api', profissionaisRoute);
 app.use('/api', professoresRoute)
 app.use('/api', alunosRoute)
 app.use('/api', agendamentosRoute)
-app.use('api', eventosRoute)
+app.use('/api', eventosRoute)
+app.use('/api', usuariosRoute)
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
