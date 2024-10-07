@@ -12,7 +12,7 @@ const EventosController = {
 
     create: (req, res) => {
         try {
-            const novoEvento = req.evento;
+            const novoEvento = req.body;
             const eventoCriado = EventosService.create(novoEvento);
             res.status(201).json(eventoCriado);
         }   catch (error) {

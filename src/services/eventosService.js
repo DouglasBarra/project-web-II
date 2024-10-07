@@ -43,20 +43,21 @@ const EventosService = {
     },
 
     delete: (id) => {
-        const data = fs.readFileSync(dbPath, 'utf-8');
-        const eventos = JSON.perse(data);
+        
+            const data = fs.readFileSync(dbPath, 'utf-8');
+            const eventos = JSON.parse(data);
 
-        const eventoIndex = eventos.findIndex(evento => evento.id ===id);
+            const eventoIndex = eventos.findIndex(evento => evento.id ===id);
 
-        if (eventoIndex === -1) {
-            throw new Error('Evento não encontrado');
-        }
+            if (eventoIndex === -1) {
+                throw new Error('Evento não encontrado');
+            }
 
-        const [eventoRemovido] = eventos.splice(eventoIndex, 1);
+            const [eventoRemovido] = eventos.splice(eventoIndex, 1);
 
-        fs.writeFileSync(dbPath, JSON.stringify(eventos, null, 2));
-        return eventoRemovido;
-    }
-};
+            fs.writeFileSync(dbPath, JSON.stringify(eventos, null, 2));
+            return eventoRemovido;
+        } 
+}
 
 module.exports = EventosService;
