@@ -1,65 +1,64 @@
 const fs = require('fs');
 const path = require('path');
 const dbPath = path.join(__dirname, '../db/usuarios.json');
-const Usuário = require('../models/usuariosModel');
+const Usuario = require('../models/usuariosModel');
 
-const UsuáriosService = {
+const UsuariosService = {
     getAll: () => {
         const data = fs.readFileSync(dbPath, 'utf-8');
         return JSON.parse(data);
     },
 
-    create: (usuárioData) => {
+    create: (usuarioData) => {
         const data = fs.readFileSync(dbPath, 'utf-8');
-        const usuários = JSON.parse(data);
+        const usuarios = JSON.parse(data);
 
-        const novoUsuário = new Usuário(
-            usuárioData.name,
-            usuárioData.email,
-            usuárioData.user,
-            usuárioData.password,
-            usuárioData.level,
-            usuárioData.status,
+        const novoUsuario = new Usuario(
+            usuarioData.name,
+            usuarioData.email,
+            usuarioData.user,
+            usuarioData.password,
+            usuarioData.level,
+            usuarioData.status,
         );
 
-        usuários.push(novoUsuário);
+        usuarios.push(novoUsuario);
 
-        fs.writeFileSync(dbPath, JSON.stringify(usuarios, null, 2))
-        return novoUsuário;
+        fs.writeFileSync(dbPath, JSON.stringify(usuarios, null, 2));
+        return novoUsuario;
     },
 
-    update: (id, usuárioData) => {
+    update: (id, usuarioData) => {
         const data = fs.readFileSync(dbPath, 'utf-8');
-        const usuários = JSON.parse(data);
+        const usuarios = JSON.parse(data);
 
-        const usuárioIndex = usuários.findIndex(usuário => usuário.id == id);
+        const usuarioIndex = usuarios.findIndex(usuario => usuario.id == id);
 
-        if (usuárioIndex === -1) {
-            throw new Error('Usuário não encontrado');
+        if (usuarioIndex === -1) {
+            throw new Error('Usuario nao encontrado');
         }
 
-        usuários[usuárioIndex] = { ...usuários[usuárioIndex], ...usuárioData };
+        usuarios[usuarioIndex] = { ...usuarios[usuarioIndex], ...usuarioData };
 
-        fs.writeFileSync(dbPath, JSON.stringify(usuários, null, 2));
-        return usuários[usuárioIndex];
+        fs.writeFileSync(dbPath, JSON.stringify(usuarios, null, 2));
+        return usuarios[usuarioIndex];
     },
 
     delete: (id) => {
-        
-            const data = fs.readFileSync(dbPath, 'utf-8');
-            const usuários = JSON.parse(data);
+        const data = fs.readFileSync(dbPath, 'utf-8');
+        const usuarios = JSON.parse(data);
 
-            const usuárioIndex = usuários.findIndex(usuário => usuário.id === id);
+        const usuarioIndex = usuarios.findIndex(usuario => usuario.id === id);
 
-            if (usuárioIndex === -1) {
-                throw new Error('Usuário não encontrado');
-            }
+        if (usuarioIndex === -1) {
+            throw new Error('Usuario nao encontrado');
+        }
 
-            const [usuárioRemovido] = usuários.splice(usuárioIndex, 1);
+        const [usuarioRemovido] = usuarios.splice(usuarioIndex, 1);
 
-            fs.writeFileSync(dbPath, JSON.stringify(usuários, null, 2));
-            return usuárioRemovido;
-        } 
-}
+        fs.writeFileSync(dbPath, JSON.stringify(usuarios, null, 2));
+        return usuarioRemovido;
+    }
+};
 
-module.exports = UsuáriosService;
+module.exports = UsuariosService;

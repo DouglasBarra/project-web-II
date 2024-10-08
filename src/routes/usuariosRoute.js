@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const UsuáriosController = require('../controllers/usuariosController');
+const UsuariosController = require('../controllers/usuariosController');
 
 /**
  * @swagger
- *  components:
+ * components:
  *   schemas:
- *     Usuário:
+ *     Usuario:
  *       type: object
  *       required:
  *         - name
@@ -27,39 +27,39 @@ const UsuáriosController = require('../controllers/usuariosController');
  *           description: Email do usuário
  *         user:
  *           type: string
- *           description: Nome da usuário
+ *           description: Nome de usuário
  *         password:
  *           type: string
  *           description: Senha do usuário
  *         level:
  *           type: string
- *           description: Nivel de permissão do usuário
+ *           description: Nível de permissão do usuário
  *         status:
  *           type: string
  *           description: Status atual do usuário (on/off)
  *       example:
+ *         id: "123456"
  *         name: "João Mesquita Arruda"
- *         email: "João.mesquita@gmail.com"
- *         user: "João.mesquita"
- *         password: "Joaozin123" 
+ *         email: "joao.mesquita@gmail.com"
+ *         user: "joao.mesquita"
+ *         password: "Joaozin123"
  *         level: "admin"
  *         status: "on"
- * 
  */
 
 /**
  * @swagger
  * tags:
- *   name: Usuários
+ *   name: Usuarios
  *   description: Gerenciamento de usuários
  */
 
 /**
  * @swagger
- * /api/usuários:
+ * /api/usuarios:
  *   get:
  *     summary: Retorna a lista de todos os usuários
- *     tags: [Usuários]
+ *     tags: [Usuarios]
  *     responses:
  *       200:
  *         description: A lista de usuários
@@ -68,41 +68,40 @@ const UsuáriosController = require('../controllers/usuariosController');
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/'
+ *                 $ref: '#/components/schemas/Usuario'
  */
-
-router.get('/usuarios', UsuáriosController.getAll);
+router.get('/usuarios', UsuariosController.getAll);
 
 /**
  * @swagger
- * /api/usuários:
+ * /api/usuarios:
  *   post:
  *     summary: Cria um novo usuário
- *     tags: [Usuários]
+ *     tags: [Usuarios]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Usuário'
+ *             $ref: '#/components/schemas/Usuario'
  *     responses:
  *       201:
  *         description: Usuário criado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Usuário'
+ *               $ref: '#/components/schemas/Usuario'
  *       400:
  *         description: Dados inválidos
  */
-router.post('/usuarios', UsuáriosController.create);
+router.post('/usuarios', UsuariosController.create);
 
 /**
  * @swagger
- * /api/usuários/{id}:
+ * /api/usuarios/{id}:
  *   put:
  *     summary: Atualiza um usuário existente
- *     tags: [Usuários]
+ *     tags: [Usuarios]
  *     parameters:
  *       - in: path
  *         name: id
@@ -115,25 +114,25 @@ router.post('/usuarios', UsuáriosController.create);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Usuário'
+ *             $ref: '#/components/schemas/Usuario'
  *     responses:
  *       200:
  *         description: Usuário atualizado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Usuário'
+ *               $ref: '#/components/schemas/Usuario'
  *       404:
  *         description: Usuário não encontrado
  */
-router.put('/usuarios/:id', UsuáriosController.update);
+router.put('/usuarios/:id', UsuariosController.update);
 
 /**
  * @swagger
- * /api/usuários/{id}:
+ * /api/usuarios/{id}:
  *   delete:
  *     summary: Deleta um usuário existente
- *     tags: [Usuários]
+ *     tags: [Usuarios]
  *     parameters:
  *       - in: path
  *         name: id
@@ -147,10 +146,10 @@ router.put('/usuarios/:id', UsuáriosController.update);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Usuário'
+ *               $ref: '#/components/schemas/Usuario'
  *       404:
  *         description: Usuário não encontrado
  */
-router.delete('/usuarios/:id', UsuáriosController.delete);
+router.delete('/usuarios/:id', UsuariosController.delete);
 
 module.exports = router;

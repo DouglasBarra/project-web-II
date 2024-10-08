@@ -1,22 +1,22 @@
-const UsuáriosService = require('../services/usuariosService.js');
+const UsuariosService = require('../services/usuariosService.js');
 
-const UsuáriosController = {
+const UsuariosController = {
     getAll: (req, res) => {
         try {
-            const usuarios = UsuáriosServices.getAll();
+            const usuarios = UsuariosService.getAll();
             res.json(usuarios);
-        }   catch (error) {
-            res.status(500).json({ error: 'Erro ao buscar usuários'});   
+        } catch (error) {
+            res.status(500).json({ error: 'Erro ao buscar usuarios' });
         }
     },
 
     create: (req, res) => {
         try {
-            const novoUsuário = req.usuario;
-            const usuarioCriado = UsuáriossService.create(novoUsuário);
-            res.status(200).json(usuarioriado);
-        }   catch (error) {
-            res.status(500).json({ error: 'Erro ao criar usuário.'});
+            const novoUsuario = req.body;
+            const usuarioCriado = UsuariosService.create(novoUsuario);
+            res.status(200).json(usuarioCriado);
+        } catch (error) {
+            res.status(500).json({ error: 'Erro ao criar usuario.' });
         }
     },
 
@@ -24,12 +24,13 @@ const UsuáriosController = {
         try {
             const id = req.params.id;
             const dadosAtualizados = req.body;
-            const usuarioAtualizado = UsuáriosService.update(id, dadosAtualizados);
+            const usuarioAtualizado = UsuariosService.update(id, dadosAtualizados);
+            res.json(usuarioAtualizado);
         } catch (error) {
-            if (error.message === 'Usuário não encontrado') {
-                res.status(404).json({ error: 'Usuário não encontrado.'});
+            if (error.message === 'Usuario nao encontrado') {
+                res.status(404).json({ error: 'Usuario nao encontrado.' });
             } else {
-                res.status(500).json({ error: 'Erro ao atualizar usuário.'});
+                res.status(500).json({ error: 'Erro ao atualizar usuario.' });
             }
         }
     },
@@ -37,16 +38,16 @@ const UsuáriosController = {
     delete: (req, res) => {
         try {
             const id = req.params.id;
-            const usuarioRemovido = UsuáriosService.delete(id);
-            res.json({ message: 'Usuário removido com sucesso.', usuario: usuarioRemovido });
+            const usuarioRemovido = UsuariosService.delete(id);
+            res.json({ message: 'Usuario removido com sucesso.', usuario: usuarioRemovido });
         } catch (error) {
-            if (error.message === 'Usuário não encontrado') {
-                res.status(404).json( {error: 'Usuário não encontrado.'});
+            if (error.message === 'Usuario nao encontrado') {
+                res.status(404).json({ error: 'Usuario nao encontrado.' });
             } else {
-                res.status(500).json( { error: 'Erro ao deletar usuário.'});
+                res.status(500).json({ error: 'Erro ao deletar usuario.' });
             }
         }
     }
 };
 
-module.exports = UsuáriosController;
+module.exports = UsuariosController;
