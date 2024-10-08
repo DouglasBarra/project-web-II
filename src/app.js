@@ -10,6 +10,15 @@ const agendamentosRoute = require('./routes/agendamentosRoute');
 const eventosRoute = require('./routes/eventosRoute');
 
 app.use(express.json());
+<<<<<<< HEAD
+=======
+app.use('/api', profissionaisRoute);
+app.use('/api', professoresRoute)
+app.use('/api', alunosRoute)
+app.use('/api', agendamentosRoute)
+app.use('/api', eventosRoute)
+///////app.use('/api', usuariosRoute)
+>>>>>>> 34e7feb19982817f7d5b55b5c4dfc5585b21348c
 
 app.use('/api/profissionais', profissionaisRoute);
 app.use('/api/professores', professoresRoute);
