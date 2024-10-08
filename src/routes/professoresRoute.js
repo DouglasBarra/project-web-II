@@ -92,4 +92,61 @@ router.get('/professores', ProfessoresController.getAll);
  */
 router.post('/professores', ProfessoresController.create);
 
+/**
+ * @swagger
+ * /api/professores/{id}:
+ *   put:
+ *     summary: Atualiza um professor existente
+ *     tags: [Professores]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do professor a ser atualizado
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Professor'
+ *     responses:
+ *       200:
+ *         description: Professor atualizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Professor'
+ *       404:
+ *         description: Professor não encontrado
+ */
+router.put('/professores/:id', ProfessoresController.update);
+
+/**
+ * @swagger
+ * /api/professores/{id}:
+ *   delete:
+ *     summary: Deleta um professor existente
+ *     tags: [Professores]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do professor a ser deletado
+ *     responses:
+ *       200:
+ *         description: Professor deletado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Professor'
+ *       404:
+ *         description: Professor não encontrado
+ */
+router.delete('/professores/:id', ProfessoresController.delete);
+
+
 module.exports = router;

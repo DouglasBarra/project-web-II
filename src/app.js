@@ -10,6 +10,7 @@ const agendamentosRoute = require('./routes/agendamentosRoute')
 const eventosRoute = require('./routes/eventosRoute')
 const usuariosRoute = require('./routes/usuariosRoute')
 
+
 app.use(express.json());
 app.use('/api', profissionaisRoute);
 app.use('/api', professoresRoute)

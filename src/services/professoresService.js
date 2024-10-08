@@ -25,6 +25,39 @@ const ProfessoresService = {
 
         fs.writeFileSync(dbPath, JSON.stringify(professores, null, 2));
         return novoProfessor;
+    },
+
+    update: (id, professorData) => {
+        const data = fs.readFileSync(dbPath, 'utf-8');
+        const professores = JSON.parse(data);
+
+        const professorIndex = professores.findIndex(professor => professor.id == id);
+
+        if (professorIndex === -1) {
+            throw new Error('Professor não encontrado');
+        }
+
+        professor[professorIndex] = { ...professor[professorIndex], ...professorData };
+
+        fs.writeFileSync(dbPath, JSON.stringify(professor, null, 2));
+        return professor[professorIndex];
+    },
+
+    delete: (id) => {
+        
+        const data = fs.readFileSync(dbPath, 'utf-8');
+        const professores = JSON.parse(data);
+
+        const professorIndex = professores.findIndex(professor => professor.id === id);
+
+        if (professorIndex === -1) {
+            throw new Error('Professor não encontrado');
+        }
+
+        const [professorRemovido] = professor.splice(professorIndex, 1);
+
+        fs.writeFileSync(dbPath, JSON.stringify(professor, null, 2));
+        return professorRemovido;
     }
 };
 

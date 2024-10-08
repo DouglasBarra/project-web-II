@@ -22,10 +22,10 @@ const ProfessoresController = {
 
   update: (req, res) => {
     try {
-      const id = req.params.id;
+      const id = req.params.body;
       const dadosAtualizados = req.body;
       const professorAtualizado = ProfessoresService.update(id, dadosAtualizados);
-      res.json(professorAtualizado);
+      res.status(200).json(professorAtualizado);
     } catch (error) {
       if (error.message === 'Professor não encontrado') {
         res.status(404).json({ error: 'Professor não encontrado.' });
