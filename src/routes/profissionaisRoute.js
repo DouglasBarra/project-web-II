@@ -33,6 +33,7 @@ const ProfissionaisController = require('../controllers/profissionaisController.
  *           type: string
  *           description: Status atual do profissional (on/off)
  *       example:
+ *         id: "a2798e41-4756-400b-939d-be59f6c605d8"
  *         name: "Winton Blake"
  *         specialty: "Fisioterapeuta"
  *         contact: "wb.fisio@gmail.com"
@@ -61,7 +62,7 @@ const ProfissionaisController = require('../controllers/profissionaisController.
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Profissional'
+ *                 $ref: '#/components/schemas/Profissionais'
  */
 router.get('/profissionais', ProfissionaisController.getAll);
 
@@ -76,14 +77,14 @@ router.get('/profissionais', ProfissionaisController.getAll);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Profissional'
+ *             $ref: '#/components/schemas/Profissionais'
  *     responses:
  *       201:
  *         description: Profissional criado com sucesso
  *         content:
  *           application/json:
  *             schema: 
- *               $ref: '#/components/schemas/Profissional'
+ *               $ref: '#/components/schemas/Profissionais'
  *       400:
  *         description: Dados inválidos
  */
@@ -107,14 +108,14 @@ router.post('/profissionais', ProfissionaisController.create);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Profissional'
+ *             $ref: '#/components/schemas/Profissionais'
  *     responses:
  *       200:
  *         description: Profissional atualizado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Profissional'
+ *               $ref: '#/components/schemas/Profissionais'
  *       404:
  *         description: Profissional não encontrado
  *       400:
@@ -138,6 +139,10 @@ router.put('/profissionais/:id', ProfissionaisController.update);
  *     responses:
  *       200:
  *         description: Profissional removido com sucesso
+ *         content:
+ *          application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Profissionais'
  *       404:
  *         description: Profissional não encontrado
  */
