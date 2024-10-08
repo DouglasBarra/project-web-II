@@ -81,7 +81,7 @@ router.get('/professores', ProfessoresController.getAll);
  *           schema:
  *             $ref: '#/components/schemas/Professor'
  *     responses:
- *       201:
+ *       200:
  *         description: Professor criado com sucesso
  *         content:
  *           application/json:

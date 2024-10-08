@@ -10,4 +10,4 @@ class Agendamento {
   }
 }
 
-module.exports = Agendamento;
+module.exports = Agendamento

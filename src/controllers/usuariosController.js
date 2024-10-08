@@ -14,7 +14,7 @@ const UsuáriosController = {
         try {
             const novoUsuário = req.usuario;
             const usuarioCriado = UsuáriossService.create(novoUsuário);
-            res.status(201).json(usuarioriado);
+            res.status(200).json(usuarioriado);
         }   catch (error) {
             res.status(500).json({ error: 'Erro ao criar usuário.'});
         }

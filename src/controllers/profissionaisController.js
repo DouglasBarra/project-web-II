@@ -14,7 +14,7 @@ const ProfissionaisController = {
     try {
       const novoProfissional = req.body;
       const profissionalCriado = ProfissionaisService.create(novoProfissional);
-      res.status(201).json(profissionalCriado);
+      res.status(200).json(profissionalCriado);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao criar profissional.' });
     }

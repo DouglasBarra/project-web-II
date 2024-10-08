@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": "bfd3a7d4-4eab-402c-aae3-dda0585b8a7a",
+    "code_number": "10",
+    "description": "Consulta com o fisioterapeuta",
+    "scheduled_date": "2024-10-01",
+    "profissional": "João da Silva"
+  },
+  {
+    "id": "bd6ef1df-41b5-4b9a-a0ec-d023f63b02e1",
+    "code_number": "20",
+    "description": "Consulta com o medico",
+    "scheduled_date": "2024-10-01",
+    "profissional": "João da Silva"
+  }
+]

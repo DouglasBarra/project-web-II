@@ -14,7 +14,7 @@ const AlunosController = {
     try {
       const novoAluno = req.body;
       const AlunoCriado = AlunosService.create(novoAluno);
-      res.status(201).json(AlunoCriado);
+      res.status(200).json(AlunoCriado);
     } catch (error) {
       res.status(500).json({ message: 'Erro ao criar aluno', error: error.message });
     }

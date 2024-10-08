@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const dbPath = path.join(__dirname, '../db/agendamentos.json');
-const Agendamento = require('../models/agendamentosModel.js');
+const Agendamento = require('../models/agendamentosModel');
 
 const AgendamentosService = {
   getAll: () => {
@@ -30,7 +30,7 @@ const AgendamentosService = {
     const data = fs.readFileSync(dbPath, 'utf-8');
     const agendamentos = JSON.parse(data);
 
-    const index = agendamentos.findIndex(agend => agend.id === id);
+    const index = agendamentos.findIndex(agend => agend.id == id);
     
     if (index === -1) {
       throw new Error('Agendamento não encontrado');

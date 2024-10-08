@@ -14,7 +14,7 @@ const AgendamentoController = {
     try {
       const novoAgendamento = req.body;
       const agendamentoCriado = AgendamentosService.create(novoAgendamento);
-      res.status(201).json(agendamentoCriado);
+      res.status(200).json(agendamentoCriado);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao criar agendamento.' });
     }
@@ -25,7 +25,7 @@ const AgendamentoController = {
       const id = req.params.id;
       const dadosAtualizados = req.body;
       const agendamentoAtualizado = AgendamentosService.update(id, dadosAtualizados);
-      res.json(agendamentoAtualizado);
+      res.status(200).json(agendamentoAtualizado);
     } catch (error) {
       if (error.message === 'Agendamento não encontrado') {
         res.status(404).json({ error: 'Agendamento não encontrado.' });

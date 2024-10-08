@@ -83,7 +83,7 @@ router.get('/alunos', AlunosController.getAll);
  *           schema:
  *             $ref: '#/components/schemas/Aluno'
  *     responses:
- *       201:
+ *       200:
  *         description: Aluno criado com sucesso
  *         content:
  *           application/json:
