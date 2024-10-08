@@ -12,9 +12,9 @@ const UsuariosController = {
 
     create: (req, res) => {
         try {
-            const novoUsuario = req.body; // Corrigido para pegar o usuário do corpo da requisição
+            const novoUsuario = req.body;
             const usuarioCriado = UsuariosService.create(novoUsuario);
-            res.status(200).json(usuarioCriado); // Corrigido nome da variável para usuarioCriado
+            res.status(200).json(usuarioCriado);
         } catch (error) {
             res.status(500).json({ error: 'Erro ao criar usuario.' });
         }
@@ -25,7 +25,7 @@ const UsuariosController = {
             const id = req.params.id;
             const dadosAtualizados = req.body;
             const usuarioAtualizado = UsuariosService.update(id, dadosAtualizados);
-            res.json(usuarioAtualizado); // Adicionado envio de resposta com o usuário atualizado
+            res.json(usuarioAtualizado);
         } catch (error) {
             if (error.message === 'Usuario nao encontrado') {
                 res.status(404).json({ error: 'Usuario nao encontrado.' });
