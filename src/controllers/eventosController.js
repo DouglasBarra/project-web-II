@@ -14,7 +14,7 @@ const EventosController = {
         try {
             const novoEvento = req.body;
             const eventoCriado = EventosService.create(novoEvento);
-            res.status(201).json(eventoCriado);
+            res.status(200).json(eventoCriado);
         }   catch (error) {
             res.status(500).json({ error: 'Erro ao criar evento.'});
         }

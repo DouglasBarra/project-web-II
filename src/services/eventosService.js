@@ -47,7 +47,7 @@ const EventosService = {
             const data = fs.readFileSync(dbPath, 'utf-8');
             const eventos = JSON.parse(data);
 
-            const eventoIndex = eventos.findIndex(evento => evento.id ===id);
+            const eventoIndex = eventos.findIndex(evento => evento.id === id);
 
             if (eventoIndex === -1) {
                 throw new Error('Evento não encontrado');

@@ -79,7 +79,7 @@ router.get('/profissionais', ProfissionaisController.getAll);
  *           schema:
  *             $ref: '#/components/schemas/Profissionais'
  *     responses:
- *       201:
+ *       200:
  *         description: Profissional criado com sucesso
  *         content:
  *           application/json:

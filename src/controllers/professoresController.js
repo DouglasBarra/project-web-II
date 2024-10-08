@@ -14,7 +14,7 @@ const ProfessoresController = {
     try {
       const novoProfessor = req.body;
       const professorCriado = ProfessoresService.create(novoProfessor);
-      res.status(201).json(professorCriado);
+      res.status(200).json(professorCriado);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao criar professor.' });
     }

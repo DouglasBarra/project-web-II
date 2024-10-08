@@ -76,7 +76,7 @@ router.get('/eventos', EventosController.getAll);
  *           schema:
  *             $ref: '#/components/schemas/Evento'
  *     responses:
- *       201:
+ *       200:
  *         description: Evento criado com sucesso
  *         content:
  *           application/json:

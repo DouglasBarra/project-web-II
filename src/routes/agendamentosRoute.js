@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const AgendamentosController = require('../controllers/AgendamentosController.js');
+const AgendamentosController = require('../controllers/agendamentosController');
 
 /**
  * @swagger
@@ -30,7 +30,7 @@ const AgendamentosController = require('../controllers/AgendamentosController.js
  *           type: string
  *           description: Profissional responsável pelo agendamento
  *       example:
- *         code_number: "a6ff9a83-bb94-4e9e-91d1-fab7e8763a0a"
+ *         code_number: "10"
  *         description: "Consulta com o fisioterapeuta"
  *         scheduled_date: "2024-10-01"
  *         profissional: "João da Silva"
@@ -63,7 +63,7 @@ router.get('/agendamentos', AgendamentosController.getAll);
 
 /**
  * @swagger
- * /api/agendamentos/{id}:
+ * /api/agendamentos:
  *   post:
  *     summary: Cria um novo agendamento
  *     tags: [Agendamentos]
@@ -74,7 +74,7 @@ router.get('/agendamentos', AgendamentosController.getAll);
  *           schema:
  *             $ref: '#/components/schemas/Agendamentos'
  *     responses:
- *       201:
+ *       200:
  *         description: Agendamento criado com sucesso
  *         content:
  *           application/json:
@@ -83,7 +83,7 @@ router.get('/agendamentos', AgendamentosController.getAll);
  *       400:
  *         description: Dados inválidos
  */
-router.post('agendamentos/:id', AgendamentosController.create);
+router.post('/agendamentos', AgendamentosController.create);
 
 /**
  * @swagger
@@ -113,8 +113,6 @@ router.post('agendamentos/:id', AgendamentosController.create);
  *               $ref: '#/components/schemas/Agendamentos'
  *       404:
  *         description: Agendamento não encontrado
- *       400:
- *         description: Dados inválidos
  */
 router.put('/agendamentos/:id', AgendamentosController.update);
 
