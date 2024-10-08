@@ -8,6 +8,7 @@ const professoresRoute = require('./routes/professoresRoute')
 const alunosRoute = require('./routes/alunosRoute')
 const agendamentosRoute = require('./routes/agendamentosRoute')
 const eventosRoute = require('./routes/eventosRoute')
+const usuariosRoute = require('./routes/usuariosRoute')
 
 app.use(express.json());
 app.use('/api', profissionaisRoute);
@@ -15,7 +16,7 @@ app.use('/api', professoresRoute)
 app.use('/api', alunosRoute)
 app.use('/api', agendamentosRoute)
 app.use('/api', eventosRoute)
-//app.use('/api', usuariosRoute)
+app.use('/api', usuariosRoute)
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
