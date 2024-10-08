@@ -2,14 +2,15 @@
   "dependencies": {
     "express": "^4.21.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^10.0.0"
   },
   "name": "project-web-ii",
   "version": "1.0.0",
   "description": "Projeto criado para avaliação 1 da aula de desenvolvimento de aplicações II curso ciencia da computação - unesc",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/receptor.js"
+    "start": "node ./src/app.js"
   },
   "author": "",
   "license": "ISC"
