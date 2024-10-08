@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "d8fb9f2f-16e5-46dd-a507-90fd4ba2aa90",
+    "name": "Judite Heeler",
+    "schoolDisciplines": [
+      "Artes",
+      "Português"
+    ],
+    "contact": "j.heeler@gmail",
+    "status": "on"
+  }
+]

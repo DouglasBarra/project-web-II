@@ -12,5 +12,12 @@
     "description": "Consulta com o medico",
     "scheduled_date": "2024-10-01",
     "profissional": "João da Silva"
+  },
+  {
+    "id": "aebb3375-aaca-4c5c-b1c1-e38df0f855ec",
+    "code_number": "30",
+    "description": "Consulta com o dentista",
+    "scheduled_date": "2024-10-01",
+    "profissional": "João da Silva"
   }
 ]

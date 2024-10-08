@@ -89,7 +89,7 @@ router.post('/agendamentos', AgendamentosController.create);
  * @swagger
  * /api/agendamentos/{id}:
  *   put:
- *     summary: Atualiza um agndamento existente
+ *     summary: Atualiza um agendamento existente
  *     tags: [Agendamentos]
  *     parameters:
  *       - in: path

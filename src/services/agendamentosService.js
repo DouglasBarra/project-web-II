@@ -30,29 +30,29 @@ const AgendamentosService = {
     const data = fs.readFileSync(dbPath, 'utf-8');
     const agendamentos = JSON.parse(data);
 
-    const index = agendamentos.findIndex(agend => agend.id == id);
+    const agendamentoIndex = agendamentos.findIndex(agend => agend.id == id);
     
-    if (index === -1) {
+    if (agendamentoIndex === -1) {
       throw new Error('Agendamento não encontrado');
     }
 
-    agendamentos[index] = { ...agendamentos[index], ...agendamentosData };
+    agendamentos[agendamentoIndex] = { ...agendamentos[agendamentoIndex], ...agendamentosData };
 
     fs.writeFileSync(dbPath, JSON.stringify(agendamentos, null, 2));
-    return agendamentos[index];
+    return agendamentos[agendamentoIndex];
   },
 
   delete: (id) => {
     const data = fs.readFileSync(dbPath, 'utf-8');
     const agendamentos = JSON.parse(data);
 
-    const index = agendamentos.findIndex(agend => agend.id === id);
+    const agendamentoIndex = agendamentos.findIndex(agend => agend.id === id);
 
-    if (index === -1) {
+    if (agendamentoIndex === -1) {
       throw new Error('Agendamento não encontrado');
     }
 
-    const [agendamentoRemovido] = agendamentos.splice(index, 1);
+    const [agendamentoRemovido] = agendamentos.splice(agendamentoIndex, 1);
 
     fs.writeFileSync(dbPath, JSON.stringify(agendamentos, null, 2));
     return agendamentoRemovido;
