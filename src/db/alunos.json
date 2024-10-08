@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "name": "Bingo Heeler",
+    "age": 6,
+    "parents": "Bandit Heeler e Chilli Heeler",
+    "status": "on",
+    "phone_number": "48 9696 5858",
+    "special_needs": "Síndrome de Down"
+  }
+]

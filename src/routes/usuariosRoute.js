@@ -38,7 +38,6 @@ const UsuariosController = require('../controllers/usuariosController');
  *           type: string
  *           description: Status atual do usuário (on/off)
  *       example:
- *         id: "a2798e41-4756-401b-939d-be59f6c604d5"
  *         name: "João Mesquita Arruda"
  *         email: "joao.mesquita@gmail.com"
  *         user: "joao.mesquita"
@@ -85,7 +84,7 @@ router.get('/usuarios', UsuariosController.getAll);
  *           schema:
  *             $ref: '#/components/schemas/Usuario'
  *     responses:
- *       201:
+ *       200:
  *         description: Usuário criado com sucesso
  *         content:
  *           application/json:

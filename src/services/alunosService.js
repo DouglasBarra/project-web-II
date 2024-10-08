@@ -38,7 +38,6 @@ const AlunosService = {
       throw new Error('Aluno não encontrado');
     }
 
-    // Atualiza os campos do aluno encontrado
     alunos[alunoIndex] = { ...alunos[alunoIndex], ...alunoData };
 
     fs.writeFileSync(dbPath, JSON.stringify(alunos, null, 2));

@@ -148,5 +148,4 @@ router.put('/professores/:id', ProfessoresController.update);
  */
 router.delete('/professores/:id', ProfessoresController.delete);
 
-
 module.exports = router;

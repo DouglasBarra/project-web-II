@@ -33,7 +33,6 @@ const ProfissionaisController = require('../controllers/profissionaisController.
  *           type: string
  *           description: Status atual do profissional (on/off)
  *       example:
- *         id: "a2798e41-4756-400b-939d-be59f6c605d8"
  *         name: "Winton Blake"
  *         specialty: "Fisioterapeuta"
  *         contact: "wb.fisio@gmail.com"

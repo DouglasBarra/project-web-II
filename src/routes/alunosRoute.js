@@ -104,7 +104,7 @@ router.post('/alunos', AlunosController.create);
  *       - in: path
  *         name: id
  *         schema:
- *           type: string
+ *         type: string
  *         required: true
  *         description: ID do aluno a ser atualizado
  *     requestBody:

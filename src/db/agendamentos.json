@@ -1,15 +1,8 @@
 [
   {
     "id": "bfd3a7d4-4eab-402c-aae3-dda0585b8a7a",
-    "code_number": "10",
+    "code_number": "10589",
     "description": "Consulta com o fisioterapeuta",
-    "scheduled_date": "2024-10-01",
-    "profissional": "João da Silva"
-  },
-  {
-    "id": "bd6ef1df-41b5-4b9a-a0ec-d023f63b02e1",
-    "code_number": "20",
-    "description": "Consulta com o medico",
     "scheduled_date": "2024-10-01",
     "profissional": "João da Silva"
   },
@@ -17,6 +10,13 @@
     "id": "aebb3375-aaca-4c5c-b1c1-e38df0f855ec",
     "code_number": "30",
     "description": "Consulta com o dentista",
+    "scheduled_date": "2024-10-01",
+    "profissional": "João da Silva"
+  },
+  {
+    "id": "1cac940b-59c2-4ad5-9608-c327bc42cb5c",
+    "code_number": "10598",
+    "description": "Consulta com o fisioterapeuta",
     "scheduled_date": "2024-10-01",
     "profissional": "João da Silva"
   }

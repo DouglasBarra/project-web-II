@@ -22,7 +22,7 @@ const ProfessoresController = {
 
   update: (req, res) => {
     try {
-      const id = req.params.body;
+      const id = req.params.id;
       const dadosAtualizados = req.body;
       const professorAtualizado = ProfessoresService.update(id, dadosAtualizados);
       res.status(200).json(professorAtualizado);

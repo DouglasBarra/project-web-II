@@ -93,9 +93,9 @@ router.post('/agendamentos', AgendamentosController.create);
  *     tags: [Agendamentos]
  *     parameters:
  *       - in: path
- *         code_number: id
+ *         name: id
  *         schema:
- *           type: string
+ *         type: string
  *         required: true
  *         description: Código do agendamento a ser atualizado
  *     requestBody:
@@ -124,7 +124,7 @@ router.put('/agendamentos/:id', AgendamentosController.update);
  *     tags: [Agendamentos]
  *     parameters:
  *       - in: path
- *         code_number: id
+ *         name: id
  *         schema:
  *           type: string
  *         required: true
@@ -132,6 +132,10 @@ router.put('/agendamentos/:id', AgendamentosController.update);
  *     responses:
  *       200:
  *         description: Agendamento removido com sucesso
+ *         content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Agendamentos'
  *       404:
  *         description: Agendamento não encontrado
  */
