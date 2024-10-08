@@ -68,7 +68,7 @@ const UsuáriosController = require('../controllers/usuariosController');
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/'
+ *                 $ref: '#/components/schemas/Usuário'
  */
 
 router.get('/usuarios', UsuáriosController.getAll);
