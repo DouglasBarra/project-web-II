@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const ProfissionalController = require('../controllers/profissionalController');
+const ProfissionaisController = require('../controllers/profissionaisController.js');
 
 /**
  * @swagger
  * components:
  *   schemas:
- *     Profissional:
+ *     Profissionais:
  *       type: object
  *       required:
  *         - name
@@ -33,6 +33,7 @@ const ProfissionalController = require('../controllers/profissionalController');
  *           type: string
  *           description: Status atual do profissional (on/off)
  *       example:
+ *         id: "a2798e41-4756-400b-939d-be59f6c605d8"
  *         name: "Winton Blake"
  *         specialty: "Fisioterapeuta"
  *         contact: "wb.fisio@gmail.com"
@@ -61,9 +62,9 @@ const ProfissionalController = require('../controllers/profissionalController');
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Profissional'
+ *                 $ref: '#/components/schemas/Profissionais'
  */
-router.get('/profissionais', ProfissionalController.getAll);
+router.get('/profissionais', ProfissionaisController.getAll);
 
 /**
  * @swagger
@@ -76,18 +77,18 @@ router.get('/profissionais', ProfissionalController.getAll);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Profissional'
+ *             $ref: '#/components/schemas/Profissionais'
  *     responses:
  *       201:
  *         description: Profissional criado com sucesso
  *         content:
  *           application/json:
  *             schema: 
- *               $ref: '#/components/schemas/Profissional'
+ *               $ref: '#/components/schemas/Profissionais'
  *       400:
  *         description: Dados inválidos
  */
-router.post('/profissionais', ProfissionalController.create);
+router.post('/profissionais', ProfissionaisController.create);
 
 /**
  * @swagger
@@ -107,20 +108,20 @@ router.post('/profissionais', ProfissionalController.create);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Profissional'
+ *             $ref: '#/components/schemas/Profissionais'
  *     responses:
  *       200:
  *         description: Profissional atualizado com sucesso
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Profissional'
+ *               $ref: '#/components/schemas/Profissionais'
  *       404:
  *         description: Profissional não encontrado
  *       400:
  *         description: Dados inválidos
  */
-router.put('/profissionais/:id', ProfissionalController.update);
+router.put('/profissionais/:id', ProfissionaisController.update);
 
 /**
  * @swagger
@@ -138,9 +139,13 @@ router.put('/profissionais/:id', ProfissionalController.update);
  *     responses:
  *       200:
  *         description: Profissional removido com sucesso
+ *         content:
+ *          application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Profissionais'
  *       404:
  *         description: Profissional não encontrado
  */
-router.delete('/profissionais/:id', ProfissionalController.delete);
+router.delete('/profissionais/:id', ProfissionaisController.delete);
 
 module.exports = router;

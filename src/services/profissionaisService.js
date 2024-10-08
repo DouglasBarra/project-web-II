@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const dbPath = path.join(__dirname, '../db/profissionais.json');
-const Profissional = require('../models/profissionalModel');
+const Profissional = require('../models/profissionaisModel');
 
 const ProfissionalService = {
   getAll: () => {

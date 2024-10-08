@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const AlunosController = require('../controllers/alunoController');
+const AlunosController = require('../controllers/alunosController');
 
 /**
  * @swagger

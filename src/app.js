@@ -3,14 +3,19 @@ const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 
-const profissionalRoute = require('./routes/profissionalRoute');
-const professorRoute = require('./routes/professorRoute')
-const alunosRoute = require('./routes/alunoRoute')
+const profissionaisRoute = require('./routes/profissionaisRoute')
+const professoresRoute = require('./routes/professoresRoute')
+const alunosRoute = require('./routes/alunosRoute')
+const agendamentosRoute = require('./routes/agendamentosRoute')
+const eventosRoute = require('./routes/eventosRoute')
 
 app.use(express.json());
-app.use('/api', profissionalRoute);
-app.use('/api', professorRoute)
+app.use('/api', profissionaisRoute);
+app.use('/api', professoresRoute)
 app.use('/api', alunosRoute)
+app.use('/api', agendamentosRoute)
+app.use('/api', eventosRoute)
+//app.use('/api', usuariosRoute)
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
