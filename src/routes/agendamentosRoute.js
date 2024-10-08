@@ -30,7 +30,7 @@ const AgendamentosController = require('../controllers/AgendamentosController.js
  *           type: string
  *           description: Profissional responsável pelo agendamento
  *       example:
- *         code_number: "102045"
+ *         code_number: "a6ff9a83-bb94-4e9e-91d1-fab7e8763a0a"
  *         description: "Consulta com o fisioterapeuta"
  *         scheduled_date: "2024-10-01"
  *         profissional: "João da Silva"
