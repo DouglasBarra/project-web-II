@@ -40,7 +40,7 @@ const AgendamentosController = require('../controllers/agendamentosController');
  * @swagger
  * tags:
  *   name: Agendamentos
- *   description: Gerenciamento de agendamentos
+ *   description: Gerenciamento de agendamentos ()
  */
 
 /**

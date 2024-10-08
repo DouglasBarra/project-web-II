@@ -44,7 +44,7 @@ const ProfissionaisController = require('../controllers/profissionaisController.
  * @swagger
  * tags:
  *   name: Profissionais
- *   description: Gerenciamento de profissionais
+ *   description: Gerenciamento de profissionais (Gabriel Pavan)
  */
 
 /**

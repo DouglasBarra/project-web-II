@@ -49,7 +49,7 @@ const AlunosController = require('../controllers/alunosController');
  * @swagger
  * tags:
  *   name: Alunos
- *   description: Gerenciamento de alunos
+ *   description: Gerenciamento de alunos (Gabriel Pavan)
  */
 
 /**
