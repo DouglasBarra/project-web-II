@@ -38,7 +38,7 @@ const UsuariosController = require('../controllers/usuariosController');
  *           type: string
  *           description: Status atual do usuário (on/off)
  *       example:
- *         id: "123456"
+ *         id: "a2798e41-4756-401b-939d-be59f6c604d5"
  *         name: "João Mesquita Arruda"
  *         email: "joao.mesquita@gmail.com"
  *         user: "joao.mesquita"
