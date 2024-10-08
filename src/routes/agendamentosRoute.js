@@ -6,7 +6,7 @@ const AgendamentosController = require('../controllers/AgendamentosController.js
  * @swagger
  * components:
  *   schemas:
- *     Agendamento:
+ *     Agendamentos:
  *       type: object
  *       required:
  *         - code_number

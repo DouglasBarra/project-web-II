@@ -6,7 +6,7 @@ const ProfessoresController = require('../controllers/professoresController');
  * @swagger
  * components:
  *   schemas:
- *     Professores:
+ *     Professor:
  *       type: object
  *       required:
  *         - name
