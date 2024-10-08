@@ -50,7 +50,7 @@ const UsuariosController = require('../controllers/usuariosController');
  * @swagger
  * tags:
  *   name: Usuarios
- *   description: Gerenciamento de usuários
+ *   description: Gerenciamento de usuários (Mateus Santos)
  */
 
 /**

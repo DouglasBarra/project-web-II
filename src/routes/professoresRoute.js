@@ -46,7 +46,7 @@ const ProfessoresController = require('../controllers/professoresController');
  * @swagger
  * tags:
  *   name: Professores
- *   description: Gerenciamento de professores
+ *   description: Gerenciamento de professores (Douglas Barra)
  */
 
 /**

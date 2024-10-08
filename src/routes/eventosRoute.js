@@ -41,7 +41,7 @@ const EventosController = require('../controllers/eventosController');
  * @swagger
  * tags:
  *   name: Eventos
- *   description: Gerenciamento de eventos
+ *   description: Gerenciamento de eventos (Mateus Santos)
  */
 
 /**
