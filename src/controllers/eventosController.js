@@ -25,6 +25,7 @@ const EventosController = {
             const id = req.params.id;
             const dadosAtualizados = req.body;
             const eventoAtualizado = EventosService.update(id, dadosAtualizados);
+            res.status(200).json(eventoAtualizado);
         } catch (error) {
             if (error.message === 'Evento não encontrado') {
                 res.status(404).json({ error: 'Evento não encontrado.'});
