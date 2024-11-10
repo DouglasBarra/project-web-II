@@ -1,31 +1,42 @@
-const fs = require('fs');
-const path = require('path');
-const dbPath = path.join(__dirname, '../db/alunos.json');
+const { connectToDatabase, closeDatabaseConnection } = require('../config/database');
 const Aluno = require('../models/alunosModel');
 
 const AlunosService = {
-  getAll: () => {
-    const data = fs.readFileSync(dbPath, 'utf-8');
-    return JSON.parse(data);
+  getAll: async () => {
+    try {
+      const db = await connectToDatabase();
+      const collection = db.collection('alunos');
+      const alunos = await collection.find().toArray();
+      return alunos;
+    } catch (error) {
+
+    } finally {
+      closeDatabaseConnection();
+    }
   },
 
-  create: (alunoData) => {
-    const data = fs.readFileSync(dbPath, 'utf-8');
-    const alunos = JSON.parse(data);
+  create: async (alunoData) => {
+    const db = await connectToDatabase();
+    const collection = db.collection('alunos');
 
-    const novoAluno = new Aluno(
-      alunoData.name,
-      alunoData.age,
-      alunoData.parents,
-      alunoData.phoneNumber,
-      alunoData.specialNeeds,
-      alunoData.status
-    );
-    
-    alunos.push(novoAluno);
+    try {
+      const novoAluno = new Aluno(
+        alunoData.name,
+        alunoData.age,
+        alunoData.parents,
+        alunoData.phoneNumber,
+        alunoData.specialNeeds,
+        alunoData.status
+      );
 
-    fs.writeFileSync(dbPath, JSON.stringify(alunos, null, 2));
-    return novoAluno;
+      const result = await collection.insertOne(novoAluno);
+      const alunoCriado = await collection.findOne({ _id: result.insertedId })
+      return alunoCriado;
+    } catch (error) {
+
+    } finally {
+      closeDatabaseConnection();
+    }
   },
 
   update: (id, alunoData) => {

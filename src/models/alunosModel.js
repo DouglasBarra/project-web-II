@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 
 class Aluno {
     constructor(name, age, parents, phoneNumber, specialNeeds, status) {
-        this.id = uuidv4();
+        this._id = uuidv4();
         this.name = name;
         this.age = age;
         this.parents = parents;

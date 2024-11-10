@@ -27,10 +27,10 @@ const AlunosController = require('../controllers/alunosController');
  *         parents:
  *           type: string
  *           description: Nomes dos pais ou responsáveis do aluno
- *         phone_number:
+ *         phoneNumber:
  *           type: string
  *           description: Número de telefone de contato
- *         special_needs:
+ *         specialNeeds:
  *           type: string
  *           description: Necessidades especiais (se houver)
  *         status:
@@ -40,8 +40,8 @@ const AlunosController = require('../controllers/alunosController');
  *         name: "Bingo Heeler"
  *         age: 6
  *         parents: "Bandit Heeler e Chilli Heeler"
- *         phone_number: "48 9696 5858"
- *         special_needs: "Síndrome de Down"
+ *         phoneNumber: "48 9696 5858"
+ *         specialNeeds: "Síndrome de Down"
  *         status: "on"
  */
 

@@ -1,9 +1,9 @@
 const AlunosService = require('../services/alunosService.js');
 
 const AlunosController = {
-  getAll: (req, res) => {
+  getAll: async (req, res) => {
     try {
-      const alunos = AlunosService.getAll();
+      const alunos = await AlunosService.getAll();
       res.json(alunos);
     } catch (error) {
       res.status(500).json({ message: 'Erro ao buscar alunos', error: error.message });
