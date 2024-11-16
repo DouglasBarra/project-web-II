@@ -1,31 +1,16 @@
+const mongoose = require('mongoose');
 require('dotenv').config();
-const { MongoClient } = require('mongodb');
 
-const { DB_URI, DB_NAME } = process.env
+const DB_URI = process.env.DB_URI
 
-let client;
-let database;
-
-// Função para conectar ao banco de dados
 async function connectToDatabase() {
-  if (!client) {
-    client = new MongoClient(DB_URI);
-    await client.connect();
-    database = client.db(DB_NAME);
-  }
-  return database;
+    try {
+      mongoose.set("strictQuery", true);
+      await mongoose.connect(DB_URI);
+      console.log("Conectado ao Banco!")
+    } catch (error) {
+      console.log(`Error: ${error}`)
+    }
 }
 
-// Função para fechar a conexão
-async function closeDatabaseConnection() {
-  if (client) {
-    await client.close();
-    client = null;
-    database = null;
-  }
-}
-
-module.exports = {
-  connectToDatabase,
-  closeDatabaseConnection,
-};
+module.exports = connectToDatabase;

@@ -11,9 +11,15 @@ const eventosRoute = require('./routes/eventosRoute')
 const usuariosRoute = require('./routes/usuariosRoute')
 
 app.use(express.json());
+
+const connectToDatabase = require('./config/database');
+connectToDatabase();
+
+const routes = require("./routes/router");
+app.use("/api", routes);
+
 app.use('/api', profissionaisRoute);
 app.use('/api', professoresRoute)
-app.use('/api', alunosRoute)
 app.use('/api', agendamentosRoute)
 app.use('/api', eventosRoute)
 app.use('/api', usuariosRoute)

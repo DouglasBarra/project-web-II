@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const AlunosController = require('../controllers/alunosController');
 
 /**
@@ -51,6 +50,32 @@ const AlunosController = require('../controllers/alunosController');
  *   name: Alunos
  *   description: Gerenciamento de alunos (Gabriel Pavan)
  */
+
+/**
+ * @swagger
+ * /api/alunos/{id}:
+ *   get:
+ *     summary: Retorna o aluno do id informado
+ *     tags: [Alunos]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *         type: string
+ *         required: true
+ *         description: ID do aluno a ser buscado
+ *     responses:
+ *       200:
+ *         description: A lista de alunos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Aluno'
+ */
+router.get('/alunos/:id', AlunosController.get);
+
 
 /**
  * @swagger
