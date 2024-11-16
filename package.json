@@ -11,7 +11,7 @@
   "description": "Projeto criado para avaliação 1 da aula de desenvolvimento de aplicações II curso ciencia da computação - unesc",
   "main": "index.js",
   "scripts": {
-    "start": "node ./_api/app.js"
+    "start": "node ./api/app.js"
   },
   "author": "",
   "license": "ISC"
