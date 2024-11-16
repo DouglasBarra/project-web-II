@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const ProfissionaisController = require('../controllers/profissionaisController.js');
 
 /**
@@ -12,7 +11,7 @@ const ProfissionaisController = require('../controllers/profissionaisController.
  *         - name
  *         - specialty
  *         - contact
- *         - phone_number  
+ *         - phoneNumber  
  *       properties:
  *         id:
  *           type: string
@@ -36,7 +35,7 @@ const ProfissionaisController = require('../controllers/profissionaisController.
  *         name: "Winton Blake"
  *         specialty: "Fisioterapeuta"
  *         contact: "wb.fisio@gmail.com"
- *         phone_number: "48 9696 5858"
+ *         phoneNumber: "48 9696 5858"
  *         status: "on"
  */
 
@@ -46,6 +45,31 @@ const ProfissionaisController = require('../controllers/profissionaisController.
  *   name: Profissionais
  *   description: Gerenciamento de profissionais (Gabriel Pavan)
  */
+
+/**
+ * @swagger
+ * /api/profissionais/{id}:
+ *   get:
+ *     summary: Busca um profissional existente pelo id
+ *     tags: [Profissionais]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do profissional a ser buscado
+ *     responses:
+ *       200:
+ *         description: A lista de profissionais
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Profissionais'
+ */
+router.get('/profissionais/:id', ProfissionaisController.get);
 
 /**
  * @swagger

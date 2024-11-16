@@ -5,7 +5,6 @@ const AlunosController = {
     try {
       const id = req.params.id
       const Aluno = await AlunoModel.findById(id);
-
       if(!Aluno){
         res.status(404).json({ msg: "Aluno não encontrado!"});
         return;

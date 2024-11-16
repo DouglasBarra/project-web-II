@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const { v4: uuidv4 } = require('uuid');
-
 const alunoSchema = new Schema({
     name: { type: String, require: true },
     age: { type: Number, require: true },
@@ -12,6 +10,6 @@ const alunoSchema = new Schema({
     status: { type: String, require: true}
 });
 
-const Aluno = mongoose.model("Aluno", alunoSchema);
+const Aluno = mongoose.model("Alunos", alunoSchema);
 
 module.exports = Aluno

@@ -1,14 +1,14 @@
-const { v4: uuidv4 } = require('uuid');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-class Profissionais {
-  constructor(name, specialty, contact, phone_number, status = 'on') {
-    this.id = uuidv4(); 
-    this.name = name;
-    this.specialty = specialty;
-    this.contact = contact;
-    this.phone_number = phone_number;
-    this.status = status;
-  }
-}
+const profissionalSchema = new Schema({
+  name: { type: String, require: true },
+  specialty: { type: String, require: true },
+  contact: { type: String, require: true },
+  phoneNumber: { type: String, require: true },
+  status: { type: String, require: true }
+})
 
-module.exports = Profissionais;
+const Profissional = mongoose.model("Profissionais", profissionalSchema);
+
+module.exports = Profissional;

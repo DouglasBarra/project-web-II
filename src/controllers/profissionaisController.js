@@ -1,51 +1,79 @@
-const ProfissionaisService = require('../services/profissionaisService.js');
+const ProfissionaisModel = require("../models/profissionaisModel");
 
 const ProfissionaisController = {
-  getAll: (req, res) => {
+  get: async (req, res) => {
     try {
-      const profissionais = ProfissionaisService.getAll();
+      const id = req.params.id
+      const Profissional = await ProfissionaisModel.findById(id);
+      if (!Profissional) {
+        res.status(404).json({ msg: "Profissional não encontrado!" });
+        return;
+      }
+      res.json(Profissional);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+  getAll: async (req, res) => {
+    try {
+      const profissionais = await ProfissionaisModel.find();
       res.json(profissionais);
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao buscar profissionais.' });
+      res.status(500).json(error);
     }
   },
-  
-  create: (req, res) => {
+  create: async (req, res) => {
     try {
-      const novoProfissional = req.body;
-      const profissionalCriado = ProfissionaisService.create(novoProfissional);
-      res.status(200).json(profissionalCriado);
+      const Profissional = {
+        name: req.body.name,
+        specialty: req.body.specialty,
+        contact: req.body.contact,
+        phoneNumber: req.body.phoneNumber,
+        status: req.body.status
+      }
+      const response = await ProfissionaisModel.create(Profissional);
+      res.status(200).json({ response, msg: "Profissional criado com sucesso!" });
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao criar profissional.' });
+      res.status(500);
+      console.log(error)
     }
   },
-
-  update: (req, res) => {
+  update: async (req, res) => {
     try {
       const id = req.params.id;
-      const dadosAtualizados = req.body;
-      const profissionalAtualizado = ProfissionaisService.update(id, dadosAtualizados);
-      res.json(profissionalAtualizado);
-    } catch (error) {
-      if (error.message === 'Profissional não encontrado') {
-        res.status(404).json({ error: 'Profissional não encontrado.' });
-      } else {
-        res.status(500).json({ error: 'Erro ao atualizar profissional.' });
+
+      const Profissional = {
+        name: req.body.name,
+        specialty: req.body.specialty,
+        contact: req.body.contact,
+        phoneNumber: req.body.phoneNumber,
+        status: req.body.status
       }
+      const updatedProfissional = await ProfissionaisModel.findByIdAndUpdate(id, Profissional);
+
+      if (!updatedProfissional) {
+        res.status(404).json({ msg: "Profissional não encontrado!" });
+        return;
+      }
+      res.status(200).json({ Profissional, msg: "Profissional atualizado com sucesso!" });
+    } catch (error) {
+      res.status(500).json({ message: 'Profissional não encontrado ou erro ao atualizar', error: error.message });
     }
   },
-
-  delete: (req, res) => {
+  delete: async (req, res) => {
     try {
       const id = req.params.id;
-      const profissionalRemovido = ProfissionaisService.delete(id);
-      res.json({ message: 'Profissional removido com sucesso.', profissional: profissionalRemovido });
-    } catch (error) {
-      if (error.message === 'Profissional não encontrado') {
-        res.status(404).json({ error: 'Profissional não encontrado.' });
-      } else {
-        res.status(500).json({ error: 'Erro ao deletar profissional.' });
+      const Profissional = await ProfissionaisModel.findById(id);
+
+      if (!Profissional) {
+        res.status(404).json({ msg: "Profissional não encontrado!" });
+        return;
       }
+
+      const deletedProfissional = await ProfissionaisModel.findByIdAndDelete(id);
+      res.status(200).json({ deletedProfissional, msg: "Profissional removido com sucesso!" });
+    } catch (error) {
+      res.status(500).json(error);
     }
   }
 };
