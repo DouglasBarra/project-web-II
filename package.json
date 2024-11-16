@@ -4,8 +4,7 @@
     "express": "^4.21.0",
     "mongoose": "^8.8.1",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1",
-    "uuid": "^10.0.0"
+    "swagger-ui-express": "^5.0.1"
   },
   "name": "project-web-ii",
   "version": "1.0.0",
