@@ -1,13 +1,13 @@
-const { v4: uuidv4 } = require('uuid');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-class Evento {
-    constructor(name, description, comments, date) {
-        this.id = uuidv4();
-        this.name = name;
-        this.description = description;
-        this.comments = comments;
-        this.date = date;
-    }
-}
+const eventosSchema = new Schema({
+    name: { type: String, require: true},
+    description: { type: String, require: true},
+    comments: { type: String, require: true},
+    date: { type: Number, require: true}
+});
+
+const Eventos = mongoose.model("Eventos", eventosSchema);
 
 module.exports = Evento
