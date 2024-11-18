@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 
+
 const professoresRoute = require('./routes/professoresRoute')
 const agendamentosRoute = require('./routes/agendamentosRoute')
 const eventosRoute = require('./routes/eventosRoute')
