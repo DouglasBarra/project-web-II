@@ -1,15 +1,15 @@
-const { v4: uuidv4 } = require('uuid');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-class Usuários {
-  constructor(name, email, user, password, level, status = 'on') {
-    this.id = uuidv4(); 
-    this.name = name;
-    this.email = email;
-    this.user = user;
-    this.password = password;
-    this.level = level;
-    this.status = status;
-  }
-}
+const usuarioSchema = new Schema({
+    name: { type: String, require: true},
+    email: { type: String, require: true},
+    user: { type: String, require: true},
+    password: { type: String, require: true},
+    level: { type: String, require: true},
+    status: { type: String, enum: ['ativo', 'inativo'], require: true,}
+});
 
-module.exports = Usuários;
+const Usuario = mongoose.model("Usuarios", usuarioSchema);
+
+module.exports = Usuario
