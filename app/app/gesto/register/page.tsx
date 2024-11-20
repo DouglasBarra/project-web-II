@@ -6,13 +6,14 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { RegisterUser } from "@/services/usuarios"
+import { RegisterUser } from "@/services/usuarios";
 
 const RegisterPage = () => {
-    const [email, setMail] = useState('')
-    const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
-    const [error, setError] = useState<string | null>(null)
+    const [email, setMail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [error, setError] = useState<string | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null); 
     const router = useRouter();
 
     const onSubmit = (e: React.FormEvent) => {
@@ -20,7 +21,10 @@ const RegisterPage = () => {
         RegisterUser(name, email, password)
             .then((data) => {
                 if (data) {
-                    router.push('/gesto/login');
+                    setSuccessMessage('Cadastro realizado com sucesso!'); 
+                    setTimeout(() => {
+                        router.push('/gesto/login');
+                    }, 3000);
                 }
             })
             .catch((error) => {
@@ -36,6 +40,16 @@ const RegisterPage = () => {
                     <CardTitle className="text-center text-xl font-semibold">Registro Gest' O</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                    {successMessage && (
+                        <div className="p-4 mb-4 text-green-700 bg-green-100 rounded">
+                            {successMessage}
+                        </div>
+                    )}
+                    {error && (
+                        <div className="p-4 mb-4 text-red-700 bg-red-100 rounded">
+                            {error}
+                        </div>
+                    )}
                     <Input 
                         type="name"
                         id="name"
@@ -76,7 +90,7 @@ const RegisterPage = () => {
                 </CardFooter>
             </Card>
         </form>
-    )
-}
+    );
+};
 
 export default RegisterPage;
