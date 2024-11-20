@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
 const professoresRoute = require('./routes/professoresRoute')
@@ -6,6 +7,7 @@ const agendamentosRoute = require('./routes/agendamentosRoute')
 const eventosRoute = require('./routes/eventosRoute')
 const usuariosRoute = require('./routes/usuariosRoute')
 
+app.use(cors());
 app.use(express.json());
 
 const connectToDatabase = require('./config/database');

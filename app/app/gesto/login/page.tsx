@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-
+import Link from "next/link";
+ 
 const LoginPage = () => {
     return (
-        <div className="">
+        <form className="">
             <Card className="w-full max-w-md">
                 <CardHeader>
                     <CardTitle className="text-center text-xl font-semibold">Login Gest' O</CardTitle>
@@ -21,13 +22,13 @@ const LoginPage = () => {
                     </Button>
                     <p className="text-center text-sm text-gray-600">
                         Não tem uma conta?{" "}
-                        <a href="/gesto/register" className="text-blue-600 hover:text-blue-700 font-semibold">
+                        <Link href="/gesto/register" className="text-blue-600 hover:text-blue-700 font-semibold">
                             Registre-se aqui
-                        </a>
+                        </Link>
                     </p>
                 </CardFooter>
             </Card>
-        </div>
+        </form>
     )
 }
 
