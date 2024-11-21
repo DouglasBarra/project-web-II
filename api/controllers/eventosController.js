@@ -4,7 +4,7 @@ const EventosController = {
     get: async (req, res) => {
         try {
             const id = req.params.id
-            const Evento = await UsuarioModel.findById();
+            const Evento = await EventoModel.findById();
             if (!Evento) {
                 res.status(404).json({ msg: "Evento não encontrado!" });
                 return;
@@ -30,7 +30,7 @@ const EventosController = {
                 comments: req.body.comments,
                 date: req.body.date
             }
-            const response = await EventosModel.create(novoEvento);
+            const response = await EventoModel.create(novoEvento);
             res.status(201).json({ response, msg: "Evento criado com sucesso!" })
         } catch (error) {
             res.status(500);
