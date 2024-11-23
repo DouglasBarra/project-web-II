@@ -54,6 +54,31 @@ const UsuariosController = require('../controllers/usuariosController');
 
 /**
  * @swagger
+ * /api/usuarios/{email}&{password}:
+ *   get:
+ *     summary: Valida o login do usuario
+ *     tags: [Usuarios]
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Email do usuario
+ *       - in: path
+ *         name: password
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Senha do usuario
+ *     responses:
+ *       200:
+ *         description: Sucesso de login
+ */
+router.get('/usuarios/:email&:password', UsuariosController.login);
+
+/**
+ * @swagger
  * /api/usuarios:
  *   get:
  *     summary: Retorna a lista de todos os usuários

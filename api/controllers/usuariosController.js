@@ -1,6 +1,20 @@
 const UsuarioModel = require('../models/usuariosModel');
 
 const UsuariosController = {
+    login: async (req, res) => {
+        try {
+            const email = req.params.email
+            const password = req.params.password
+            const Usuario = await UsuarioModel.findOne({ email: email, password: password });
+            if(!Usuario) {
+                res.status(404).json({ msg: "Usuario não encontrado ou senha incorreta!" });
+                return;
+            }
+            res.status(201).json({ msg: "Login realizado com sucesso!" })
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    },
     get: async (req, res) => {
         try {
             const id = req.params.id
@@ -71,7 +85,6 @@ const UsuariosController = {
                 res.status(404).json({ msg: "Usuario não encontrado!" });
                 return;
             }
-
             const deletedUsuario = await UsuarioModel.findByIdAndDelete(id);
             res.status(200).json({ deletedUsuario, msg: "Usuario removido com sucesso!" });
         } catch (error) {

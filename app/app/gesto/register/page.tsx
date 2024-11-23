@@ -34,7 +34,7 @@ const RegisterPage = () => {
     };
 
     return (
-        <form onSubmit={onSubmit} className="">
+        <form onSubmit={onSubmit}>
             <Card className="w-full max-w-md">
                 <CardHeader>
                     <CardTitle className="text-center text-xl font-semibold">Registro Gest' O</CardTitle>
