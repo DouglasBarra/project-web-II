@@ -1,8 +1,9 @@
-const USER_BASE_API = "http://localhost:8080/api/usuarios"
+const USER_BASE_API = "http://localhost:8080/api/usuarios";
 
-export async function loginUser(mail, password){
+// Função para fazer login de um usuário
+export async function loginUser(mail, password) {
     try {
-        const response = await fetch(USER_BASE_API + `/${mail}&${password}`)
+        const response = await fetch(USER_BASE_API + `/${mail}&${password}`);
         if (response.ok) {
             return true;
         } else {
@@ -34,4 +35,20 @@ export async function RegisterUser(name, email, password) {
         console.error('Erro ao tentar registrar o usuário:', error);
         return false;
     }
-}
+};
+
+export async function getAllUsers() {
+    try {
+        const response = await fetch(USER_BASE_API);
+        if (response.ok) {
+            const users = await response.json(); 
+            return users;
+        } else {
+            console.error('Erro ao buscar usuários:', response.status);
+            return [];
+        }
+    } catch (error) {
+        console.error('Erro ao tentar buscar os usuários:', error);
+        return []; 
+    }
+};
