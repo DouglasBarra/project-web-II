@@ -1,51 +1,79 @@
-const ProfessoresService = require('../services/professoresService.js');
+const ProfessoresModel = require("../models/professoresModel");
 
 const ProfessoresController = {
-  getAll: (req, res) => {
+  get: async (req, res) => {
     try {
-      const professores = ProfessoresService.getAll();
-      res.json(professores);
+      const id = req.params.id
+      const Professor = await ProfessoresModel.findById(id);
+      if (!Professor) {
+        res.status(404).json({ msg: "Professor não encontrado!" });
+        return;
+      }
+      res.json(Professor);
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao buscar professores.' });
+      res.status(500).json(error);
     }
   },
-  
-  create: (req, res) => {
+  getAll: async (req, res) => {
     try {
-      const novoProfessor = req.body;
-      const professorCriado = ProfessoresService.create(novoProfessor);
-      res.status(200).json(professorCriado);
+      const professores = await ProfessoresModel.find();
+      res.json(professor);
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao criar professor.' });
+      res.status(500).json(error);
     }
   },
-
-  update: (req, res) => {
+  create: async (req, res) => {
+    try {
+      const Professor = {
+        name: req.body.name,
+        schoolDisciplines: req.body.schoolDisciplines,
+        contact: req.body.contact,
+        phoneNumber: req.body.phoneNumber,
+        status: req.body.status
+      }
+      const response = await ProfessoresModel.create(Professor);
+      res.status(200).json({ response, msg: "Professor criado com sucesso!" });
+    } catch (error) {
+      res.status(500);
+      console.log(error)
+    }
+  },
+  update: async (req, res) => {
     try {
       const id = req.params.id;
-      const dadosAtualizados = req.body;
-      const professorAtualizado = ProfessoresService.update(id, dadosAtualizados);
-      res.status(200).json(professorAtualizado);
-    } catch (error) {
-      if (error.message === 'Professor não encontrado') {
-        res.status(404).json({ error: 'Professor não encontrado.' });
-      } else {
-        res.status(500).json({ error: 'Erro ao atualizar professor.' });
+
+      const Professor = {
+        name: req.body.name,
+        schoolDisciplines: req.body.schoolDisciplines,
+        contact: req.body.contact,
+        phoneNumber: req.body.phoneNumber,
+        status: req.body.status
       }
+      const updatedProfessor = await ProfessoresModel.findByIdAndUpdate(id, Professor);
+
+      if (!updatedProfessor) {
+        res.status(404).json({ msg: "Professor não encontrado!" });
+        return;
+      }
+      res.status(200).json({ Professor, msg: "Professor atualizado com sucesso!" });
+    } catch (error) {
+      res.status(500).json({ message: 'Professor não encontrado ou erro ao atualizar', error: error.message });
     }
   },
-
-  delete: (req, res) => {
+  delete: async (req, res) => {
     try {
       const id = req.params.id;
-      const professorRemovido = ProfessoresService.delete(id);
-      res.json({ message: 'Professor removido com sucesso.', professor: professorRemovido });
-    } catch (error) {
-      if (error.message === 'Professor não encontrado') {
-        res.status(404).json({ error: 'Professor não encontrado.' });
-      } else {
-        res.status(500).json({ error: 'Erro ao deletar professor.' });
+      const Professor = await ProfessoresModel.findById(id);
+
+      if (!Professor) {
+        res.status(404).json({ msg: "Professor não encontrado!" });
+        return;
       }
+
+      const deletedProfessor = await ProfessoresModel.findByIdAndDelete(id);
+      res.status(200).json({ deletedProfessor, msg: "Professor removido com sucesso!" });
+    } catch (error) {
+      res.status(500).json(error);
     }
   }
 };

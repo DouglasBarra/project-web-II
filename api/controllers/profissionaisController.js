@@ -38,7 +38,7 @@ const ProfissionaisController = {
       console.log(error)
     }
   },
-  update: async (req, res) => {
+ update: async (req, res) => {
     try {
       const id = req.params.id;
 
