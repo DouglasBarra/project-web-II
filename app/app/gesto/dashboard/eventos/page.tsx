@@ -8,7 +8,8 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Description } from '@radix-ui/react-dialog';
+import Link from 'next/link';
+
 
 const EventosPage = () => {
     const [eventos, setEventos] = useState([]);
