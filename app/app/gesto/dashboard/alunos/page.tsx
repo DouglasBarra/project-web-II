@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-const UsuariosPage = () => {
+const AlunosPage = () => {
     const [usuarios, setUsuarios] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
 
@@ -143,4 +143,4 @@ const UsuariosPage = () => {
     );
 };
 
-export default UsuariosPage;
+export default AlunosPage;

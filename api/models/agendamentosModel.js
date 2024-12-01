@@ -1,13 +1,13 @@
-const { v4: uuidv4 } = require('uuid');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-class Agendamento {
-  constructor(code_number, description, scheduled_date, profissional) {
-    this.id = uuidv4(); 
-    this.code_number = code_number;
-    this.description = description;
-    this.scheduled_date = scheduled_date;
-    this.profissional = profissional;
-  }
-}
+const AgendamentoSchema = new Schema({
+  code_number: { type: String, require: true },
+  description: { type: String, require: true },
+  scheduled_date: { type: Date, require: true },
+  profissional: { type: Schema.Types.ObjectId, ref: 'Profissional' }
+})
+
+const Agendamento = mongoose.model("Agendamentos", AgendamentoSchema);
 
 module.exports = Agendamento

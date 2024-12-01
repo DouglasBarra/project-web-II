@@ -1,14 +1,14 @@
-const { v4: uuidv4 } = require('uuid');
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-class Professor {
-    constructor(name, schoolDisciplines, contact, phoneNumber, status = 'on') {
-        this.id = uuidv4();
-        this.name = name;
-        this.schoolDisciplines = schoolDisciplines;
-        this.contact = contact;
-        this.phoneNumber = phoneNumber;
-        this.status = status;
-    }
-}
+const professorSchema = new Schema({
+    name: { type: String, require: true },
+    schoolDisciplines: { type: String, require: true },
+    contact: { type: String, require: true },
+    phoneNumber: { type: String, require: true },
+    status: { type: String, require: true }
+})
 
-module.exports = Professor
+const Professor = mongoose.model("Professores", professorSchema);
+
+module.exports = Professor;
