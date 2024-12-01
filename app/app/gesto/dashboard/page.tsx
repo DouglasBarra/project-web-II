@@ -14,12 +14,15 @@ const DashboardPage = () => {
             </CardContent>
           </Card>
         </Link>
-        <Card>
-          <CardContent className="flex-col pt-3">
-            <h3 className="text-xl font-semibold text-gray-800">Alunos</h3>
-            <p className="text-gray-600 mt-2">Gerenciar Alunos</p>
-          </CardContent>
-        </Card>
+        <Link href='/gesto/dashboard/alunos'>
+          <Card>
+            <CardContent className="flex-col pt-3">
+              <h3 className="text-xl font-semibold text-gray-800">Alunos</h3>
+              <p className="text-gray-600 mt-2">Gerenciar Alunos</p>
+            </CardContent>
+          </Card>
+        </Link>
+
         <Card>
           <CardContent className="flex-col pt-3">
             <h3 className="text-xl font-semibold text-gray-800">Professores</h3>
