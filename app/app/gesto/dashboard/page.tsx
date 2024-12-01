@@ -29,7 +29,7 @@ const DashboardPage = () => {
             <p className="text-gray-600 mt-2">Gerenciar Professores</p>
           </CardContent>
         </Card>
-
+        <Link href='/gesto/dashboard/eventos'>
         <Card>
           <CardContent className="flex-col pt-3">
             <h3 className="text-xl font-semibold text-gray-800">Eventos</h3>
