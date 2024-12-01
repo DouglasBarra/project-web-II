@@ -31,11 +31,11 @@ const EventosPage = () => {
         setSelectedEvent(evento);
     };
 
-    const handleEditUser = () => {
+    const handleEditEvent = () => {
         console.log("Editar evento", selectedEvent);
     };
 
-    const handleAddevent = () => {
+    const handleAddEvent = () => {
         console.log("Adicionar evento");
     };
 
@@ -67,7 +67,7 @@ const EventosPage = () => {
                         {eventos.map((evento) => (
                             <TableRow
                                 key={evento._id}
-                                className={`hover:bg-gray-300 transition-all duration-200 font-bold ${selectedUser?._id === usuario._id ? 'bg-blue-300' : ''}`}
+                                className={`hover:bg-gray-300 transition-all duration-200 font-bold ${selectedEvent?._id === evento._id ? 'bg-blue-300' : ''}`}
                                 onClick={() => handleRowClick(evento)}
                             >
                                 <TableCell hidden>{evento._id}</TableCell>
