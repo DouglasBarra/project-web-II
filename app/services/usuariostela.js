@@ -4,8 +4,8 @@ export async function getAllUsuarios() {
     try {
         const response = await fetch(USER_BASE_API);
         if (response.ok) {
-            const alunos = await response.json();
-            return alunos;
+            const usuarios = await response.json();
+            return usuarios;
         } else {
             console.error(`Erro ao buscar usuarios: ${response.status} - ${response.statusText}`);
             return [];
@@ -48,11 +48,11 @@ export async function deleteUsuario(id) {
         if (response.ok) {
             return true; // Deletado com sucesso
         } else {
-            console.error(`Erro ao deletar aluno: ${response.status} - ${response.statusText}`);
+            console.error(`Erro ao deletar usuario: ${response.status} - ${response.statusText}`);
             return false; // Falha na deleção
         }
     } catch (error) {
-        console.error(`Erro ao tentar deletar o aluno: ${error.message}`, error);
+        console.error(`Erro ao tentar deletar o usuario: ${error.message}`, error);
         return false; // Erro na requisição
     }
 };
@@ -68,14 +68,25 @@ export async function createUsuario(usuarioData) {
         });
 
         if (response.ok) {
-            const newUsuario = await response.json();
-            return newUsuario;
+            try {
+                const newUsuario = await response.json(); // Tenta processar o JSON
+                return newUsuario;
+            } catch (jsonError) {
+                console.error('Erro ao parsear a resposta JSON:', jsonError);
+                return null;
+            }
         } else {
-            console.error(`Erro ao criar usuario: ${response.status} - ${response.statusText}`);
+            // Verificação adicional para garantir que response é válido
+            if (response && response.status && response.statusText) {
+                console.error(`Erro ao criar usuario: ${response.status} - ${response.statusText}`);
+            } else {
+                console.error('Erro desconhecido ao criar usuário');
+            }
             return null;
         }
     } catch (error) {
+        // Captura erros de rede ou outros erros de execução
         console.error(`Erro ao tentar criar o usuario: ${error.message}`, error);
         return null;
     }
-};
+}
