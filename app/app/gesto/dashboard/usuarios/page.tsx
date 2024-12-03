@@ -18,7 +18,7 @@ const [newUsuario, setNewUsuario] = useState({ 'Nome': '', 'E-mail': '', 'Usuari
 const [openCreateDialog, setOpenCreateDialog] = useState(false);
 
     useEffect(() => {
-        getAllUsers()
+        getAllUsuarios()
             .then((data) => {
                 if (data) {
                     setUsuarios(data);
@@ -30,17 +30,17 @@ const [openCreateDialog, setOpenCreateDialog] = useState(false);
     }, [reload]);
 
     const handleRowClick = (usuario) => {
-        setSelectedUser(usuario);
+        setSelectedUsuario(usuario);
     };
 
     const handleInputChange = (field, value, isNew = false) =>{
         if (isNew) {
-            setNewAluno((prev) => ({
+            setNewUsuario((prev) => ({
                 ...prev,
                 [field]: value,
             }));
         } else {
-            setSelectedAluno((prev) => ({
+            setSelectedUsuario((prev) => ({
                 ...prev,
                 [field]: value,
             }))
@@ -50,7 +50,7 @@ const [openCreateDialog, setOpenCreateDialog] = useState(false);
 
 
     const handleEditUsuario = () => {
-        console.log("Editar usuário", selectedUser);
+        console.log("Editar usuário", selectedUsuario);
 
         editUsuario(selectedUsuario.id, selectedUsuario)
             .then((data) => {
@@ -82,7 +82,7 @@ const [openCreateDialog, setOpenCreateDialog] = useState(false);
                 if (data) {
                     setReload((prev) => !prev);
                     setOpenCreateDialog(false);
-                    setNewUsuario({ Nome: '', E-mail: '', Usuario: '', Senha: '', Level: '', Status: 'off' })
+                    setNewUsuario({ 'Nome': '', 'E-mail': '', 'Usuario': '', 'Senha': '', 'Level': '', 'Status': 'off' })
                 }
             })
             .catch((error) => {
@@ -95,8 +95,8 @@ const [openCreateDialog, setOpenCreateDialog] = useState(false);
             .then((data) => {
                 if (data) {
                     setReload((prev) => !prev);
-                    seOpenCreateDialog(false);
-                    setNewUsuario({ Nome: '', E-mail: '', Usuario: '', Senha: '', Level: '', Status: 'off' });
+                    setOpenCreateDialog(false);
+                    setNewUsuario({ 'Nome': '', 'E-mail': '', 'Usuario': '', 'Senha': '', 'Level': '', 'Status': 'off' });
                 }
             })
             .catch((error) => {
@@ -146,7 +146,7 @@ const [openCreateDialog, setOpenCreateDialog] = useState(false);
                         {usuarios.map((usuario) => (
                             <TableRow
                                 key={usuario._id}
-                                className={`hover:bg-gray-300 transition-all duration-200 font-bold ${selectedUser?._id === usuario._id ? 'bg-blue-300' : ''}`}
+                                className={`hover:bg-gray-300 transition-all duration-200 font-bold ${selectedUsuario?._id === usuario._id ? 'bg-blue-300' : ''}`}
                                 onClick={() => handleRowClick(usuario)}
                             >
                                 <TableCell hidden>{usuario._id}</TableCell>
