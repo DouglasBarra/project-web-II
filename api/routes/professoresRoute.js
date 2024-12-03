@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const ProfessoresController = require('../controllers/professoresController');
 
 /**
@@ -51,6 +50,31 @@ const ProfessoresController = require('../controllers/professoresController');
 
 /**
  * @swagger
+ * /api/professores/{id}:
+ *   get:
+ *     summary: Retorna a lista de todos os professores
+ *     tags: [Professores]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do professor a ser buscado
+ *     responses:
+ *       200:
+ *         description: A lista de professores
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Professor'
+ */
+router.get('/professores/:id', ProfessoresController.get);
+
+/**
+ * @swagger
  * /api/professores:
  *   get:
  *     summary: Retorna a lista de todos os professores
@@ -65,7 +89,6 @@ const ProfessoresController = require('../controllers/professoresController');
  *               items:
  *                 $ref: '#/components/schemas/Professor'
  */
-
 router.get('/professores', ProfessoresController.getAll);
 
 /**
@@ -120,6 +143,8 @@ router.post('/professores', ProfessoresController.create);
  *               $ref: '#/components/schemas/Professor'
  *       404:
  *         description: Professor não encontrado
+ *       400:
+ *         description: Dados inválidos
  */
 router.put('/professores/:id', ProfessoresController.update);
 

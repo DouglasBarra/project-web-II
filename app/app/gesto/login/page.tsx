@@ -72,7 +72,7 @@ const LoginPage = () => {
                 </CardContent>
                 <CardFooter className="flex flex-col space-y-4">
                     <Button type="submit" variant="default" size="default" className="w-full">
-                        Sign in
+                        Entrar
                     </Button>
                     <p className="text-center text-sm text-gray-600">
                         Não tem uma conta?{" "}

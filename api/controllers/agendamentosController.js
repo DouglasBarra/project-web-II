@@ -1,53 +1,80 @@
-const AgendamentosService = require('../services/agendamentosService.js');
+const AgendamentosModel = require("../models/AgendamentosModel");
+const Profissional = require("../models/profissionaisModel");
 
-const AgendamentoController = {
-  getAll: (req, res) => {
+const AgendamentosController = {
+  get: async (req, res) => {
     try {
-      const agendamentos = AgendamentosService.getAll();
-      res.json(agendamentos);
+      const id = req.params.id
+      const Agendamento = await AgendamentosModel.findById(id);
+      if (!Agendamento) {
+        res.status(404).json({ msg: "Agendamento não encontrado!" });
+        return;
+      }
+      res.json(Agendamento);
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao buscar agendamentos.' });
+      res.status(500).json(error);
     }
   },
-  
-  create: (req, res) => {
+  getAll: async (req, res) => {
     try {
-      const novoAgendamento = req.body;
-      const agendamentoCriado = AgendamentosService.create(novoAgendamento);
-      res.status(200).json(agendamentoCriado);
+      const Agendamentos = await AgendamentosModel.find();
+      res.json(Agendamentos);
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao criar agendamento.' });
+      res.status(500).json(error);
     }
   },
-
-  update: (req, res) => {
+  create: async (req, res) => {
+    try {
+      const Agendamento = {
+        code_number: req.body.code_number,
+        description: req.body.description,
+        schedule_date: req.body.schedule_date,
+        profissional: req.body.profissional
+      }
+      const response = await AgendamentosModel.create(Agendamento);
+      res.status(200).json({ response, msg: "Agendamento criado com sucesso!" });
+    } catch (error) {
+      res.status(500);
+      console.log(error)
+    }
+  },
+ update: async (req, res) => {
     try {
       const id = req.params.id;
-      const dadosAtualizados = req.body;
-      const agendamentoAtualizado = AgendamentosService.update(id, dadosAtualizados);
-      res.status(200).json(agendamentoAtualizado);
-    } catch (error) {
-      if (error.message === 'Agendamento não encontrado') {
-        res.status(404).json({ error: 'Agendamento não encontrado.' });
-      } else {
-        res.status(500).json({ error: 'Erro ao atualizar agendamento.' });
+
+      const Agendamento = {
+        code_number: req.body.code_number,
+        description: req.body.description,
+        schedule_date: req.body.schedule_date,
+        profissional: req.body.profissional
       }
+      const updatedAgendamento = await AgendamentosModel.findByIdAndUpdate(id, Agendamento);
+
+      if (!updatedAgendamento) {
+        res.status(404).json({ msg: "Agendamento não encontrado!" });
+        return;
+      }
+      res.status(200).json({ Agendamento, msg: "Agendamento atualizado com sucesso!" });
+    } catch (error) {
+      res.status(500).json({ message: 'Agendamento não encontrado ou erro ao atualizar', error: error.message });
     }
   },
-
-  delete: (req, res) => {
+  delete: async (req, res) => {
     try {
       const id = req.params.id;
-      const agendamentoRemovido = AgendamentosService.delete(id);
-      res.json({ message: 'Agendamento removido com sucesso.', agendamento: agendamentoRemovido });
-    } catch (error) {
-      if (error.message === 'Agendamento não encontrado') {
-        res.status(404).json({ error: 'Agendamento não encontrado.' });
-      } else {
-        res.status(500).json({ error: 'Erro ao deletar agendamento.' });
+      const Agendamento = await AgendamentosModel.findById(id);
+
+      if (!Agendamento) {
+        res.status(404).json({ msg: "Agendamento não encontrado!" });
+        return;
       }
+
+      const deletedAgendamento = await AgendamentosModel.findByIdAndDelete(id);
+      res.status(200).json({ deletedAgendamento, msg: "Agendamento removido com sucesso!" });
+    } catch (error) {
+      res.status(500).json(error);
     }
   }
 };
 
-module.exports = AgendamentoController;
+module.exports = AgendamentosController;

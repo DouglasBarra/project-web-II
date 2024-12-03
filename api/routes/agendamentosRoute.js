@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const AgendamentosController = require('../controllers/agendamentosController');
 
 /**
@@ -42,6 +41,33 @@ const AgendamentosController = require('../controllers/agendamentosController');
  *   name: Agendamentos
  *   description: Gerenciamento de agendamentos (Douglas Barra)
  */
+
+/**
+ * @swagger
+ * /api/agendamentos/{id}:
+ *   get:
+ *     summary: Retorna a lista de todos os agendamentos
+ *     tags: [Agendamentos]
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: false
+ *        description: Nome do profissional
+ *     responses:
+ *       200:
+ *         description: A lista de agendamentos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Agendamentos'
+ * 
+ *  
+ */
+router.get('/agendamentos', AgendamentosController.get);
 
 /**
  * @swagger
@@ -113,6 +139,8 @@ router.post('/agendamentos', AgendamentosController.create);
  *               $ref: '#/components/schemas/Agendamentos'
  *       404:
  *         description: Agendamento não encontrado
+ *       400:
+ *         description: Dados inválidos
  */
 router.put('/agendamentos/:id', AgendamentosController.update);
 

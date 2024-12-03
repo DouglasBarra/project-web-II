@@ -3,22 +3,22 @@
 import { useState, useEffect, SetStateAction } from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { getAllTeachers } from '@/services/professores';
+import { getAllSchedules } from '@/services/agendamentos';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-const ProfessoresPage = () => {
-    const [professores, setProfessores] = useState([]);
-    const [selectedTeachers, setSelectedTeachers] = useState(null);
+const AgendamentosPage = () => {
+    const [agendamentos, setAgendamentos] = useState([]);
+    const [selectedSchedule, setSelectedSchedule] = useState(null);
 
     useEffect(() => {
-        getAllTeachers()
+        getAllSchedules()
             .then((data) => {
                 if (data) {
-                    setProfessores(data);
+                    setAgendamentos(data);
                 }
             })
             .catch((error) => {
@@ -27,15 +27,15 @@ const ProfessoresPage = () => {
     }, []);
 
     const handleRowClick = (usuario: SetStateAction<null>) => {
-        setSelectedTeachers(usuario);
+        setSelectedSchedule(usuario);
     };
 
-    const handleEditTeachers = () => {
-        console.log("Editar professor", selectedTeachers);
+    const handleEditSchedule = () => {
+        console.log("Editar agendamento", selectedSchedule);
     };
 
-    const handleAddTeachers = () => {
-        console.log("Adicionar professor");
+    const handleAddSchedule = () => {
+        console.log("Adicionar agendamento");
     };
 
     return (
@@ -48,47 +48,50 @@ const ProfessoresPage = () => {
                         </Link>
                     </Button>
                     <Button
-                        onClick={handleAddTeachers}
+                        onClick={handleAddSchedule}
                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300"
                     >
-                        Adicionar professores
+                        Adicionar agendamentos
                     </Button>
-                    <h1 className="text-3xl font-bold text-left">Professores</h1>
+                    <h1 className="text-3xl font-bold text-left">Agendamentos</h1>
                 </div>
 
                 <Table className="min-w-full table-auto">
-                    <TableCaption>A lista de Professores cadastrados</TableCaption>
+                    <TableCaption>A lista de agendamentos cadastrados</TableCaption>
                     <TableHeader>
                         <TableRow>
                             <TableHead hidden>id</TableHead>
-                            <TableHead>Código do professor</TableHead>
-                            <TableHead>Disciplinas lecionadas</TableHead>
-                            <TableHead>Contato</TableHead>
+                            <TableHead>Código</TableHead>
+                            <TableHead>Descrição</TableHead>
+                            <TableHead>Data agendada</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {professores.map((usuario) => (
+                        {agendamentos.map((usuario) => (
                             <TableRow
                                 key={usuario._id}
-                                className={`hover:bg-gray-300 transition-all duration-200 font-bold ${selectedShedule?._id === Teachersr._id ? 'bg-blue-300' : ''}`}
+                                className={`hover:bg-gray-300 transition-all duration-200 font-bold ${selectedShedule?._id === scheduler._id ? 'bg-blue-300' : ''}`}
                                 onClick={() => handleRowClick(usuario)}
                             >
                                 <TableCell hidden>{usuario._id}</TableCell>
-                                <TableCell>{professores.name}</TableCell>
-                                <TableCell>{professores.schoolDisciplines}</TableCell>
-                                <TableCell>{professores.contact}</TableCell>
+                                <TableCell>{agendamentos.code_number}</TableCell>
+                                <TableCell>{agendamento.description}</TableCell>
+                                <TableCell>{agendamentos.date}</TableCell>
+                                <TableCell className="text-right">
+                                    <Checkbox className="m-3" checked={usuario.status === 'on'} />
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </div>
-            {selectedTeachers && (
-                <Dialog open={Boolean(selectedTeachers)} onOpenChange={(open) => !open && setSelectedTeachers(null)}>
+            {selectedSchedule && (
+                <Dialog open={Boolean(selectedSchedule)} onOpenChange={(open) => !open && setSelectedSchedule(null)}>
                     <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
-                            <DialogTitle>Editar professor</DialogTitle>
+                            <DialogTitle>Editar agendamento</DialogTitle>
                             <DialogDescription>
-                                Faça alterações no perfil do professor selecionado.
+                                Faça alterações no perfil do agendamento selecionado.
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
@@ -96,8 +99,8 @@ const ProfessoresPage = () => {
                                 <Label htmlFor="name" className="text-right">Nome</Label>
                                 <Input
                                     id="name"
-                                    value={selectedTeachers.name || ''}
-                                    onChange={(e) => setSelectedTeachers({ ...selectedTeachers, name: e.target.value })}
+                                    value={selectedSchedule.name || ''}
+                                    onChange={(e) => setSelectedSchedule({ ...selectedSchedule, name: e.target.value })}
                                     className="col-span-3"
                                 />
                             </div>
@@ -105,8 +108,8 @@ const ProfessoresPage = () => {
                                 <Label htmlFor="email" className="text-right">Email</Label>
                                 <Input
                                     id="email"
-                                    value={selectedTeachers.email || ''}
-                                    onChange={(e) => setSelectedTeachers({ ...selectedTeachers, email: e.target.value })}
+                                    value={selectedSchedule.email || ''}
+                                    onChange={(e) => setSelectedSchedule({ ...selectedSchedule, email: e.target.value })}
                                     className="col-span-3"
                                 />
                             </div>
@@ -114,8 +117,8 @@ const ProfessoresPage = () => {
                                 <Label htmlFor="level" className="text-right">Level</Label>
                                 <Input
                                     id="level"
-                                    value={selectedTeachers.level || ''}
-                                    onChange={(e) => setSelectedTeachers({ ...selectedTeachers, level: e.target.value })}
+                                    value={selectedSchedule.level || ''}
+                                    onChange={(e) => setSelectedSchedule({ ...selectedSchedule, level: e.target.value })}
                                     className="col-span-3"
                                 />
                             </div>
@@ -123,14 +126,14 @@ const ProfessoresPage = () => {
                                 <Label htmlFor="level" className="text-right">Status</Label>
                                 <Checkbox
                                     id="status"
-                                    checked={selectedTeachers.status === 'on'}
+                                    checked={selectedSchedule.status === 'on'}
 
                                 />
                             </div>
                         </div>
                         <DialogFooter>
-                            <Button onClick={handleEditTeachers}>Salvar alterações</Button>
-                            <Button variant="outline" onClick={() => setSelectedTeachers(null)}>Cancelar</Button>
+                            <Button onClick={handleEditSchedule}>Salvar alterações</Button>
+                            <Button variant="outline" onClick={() => setSelectedSchedule(null)}>Cancelar</Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
@@ -139,4 +142,4 @@ const ProfessoresPage = () => {
     );
 };
 
-export default ProfessoresPage;
+export default AgendamentosPage;
