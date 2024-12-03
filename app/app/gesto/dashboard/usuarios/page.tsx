@@ -90,21 +90,6 @@ const [openCreateDialog, setOpenCreateDialog] = useState(false);
             });
     };
 
-    const handleCreateUsuario = () => {
-        createUsuario(newUsuario)
-            .then((data) => {
-                if (data) {
-                    setReload((prev) => !prev);
-                    setOpenCreateDialog(false);
-                    setNewUsuario({ 'Nome': '', 'E-mail': '', 'Usuario': '', 'Senha': '', 'Level': '', 'Status': 'off' });
-                }
-            })
-            .catch((error) => {
-                console.error("Erro ao criar usuario:", error);
-            });
-    };
-
-
     const handleAddUsuario = () => {
         setOpenCreateDialog(true);
     };
