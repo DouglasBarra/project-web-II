@@ -11,11 +11,11 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 const UsuariosPage = () => {
-    const [usuarios, setUsuarios] = useState([]);
-    const [selectedUsuario, setSelectedUsuario] = useState(null);
-    const [reload, setReload] = useState(false);
-    const [newUsuario, setNewUsuario] = useState({ Nome: '', E-mail: '', Usuario: '', Senha: '', Level: '', Status: 'off' });
-    const [openCreateDialog, setOpenCreateDialog] = useState(false);
+const [usuarios, setUsuarios] = useState([]);
+const [selectedUsuario, setSelectedUsuario] = useState(null);
+const [reload, setReload] = useState(false);
+const [newUsuario, setNewUsuario] = useState({ 'Nome': '', 'E-mail': '', 'Usuario': '', 'Senha': '', 'Level': '', 'Status': 'off' });
+const [openCreateDialog, setOpenCreateDialog] = useState(false);
 
     useEffect(() => {
         getAllUsers()
