@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { RegisterUser } from "@/services/usuarios";
+import { RegisterUser } from "@/services/usuarioslogin";
 
 const RegisterPage = () => {
     const [email, setMail] = useState('');

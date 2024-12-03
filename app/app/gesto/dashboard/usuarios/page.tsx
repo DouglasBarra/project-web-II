@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { getAllUsers } from '@/services/usuarios';
+import { editUsuario, getAllUsuarios, deleteUsuario, createUsuario } from '@/services/usuariostela';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -12,7 +12,10 @@ import Link from 'next/link';
 
 const UsuariosPage = () => {
     const [usuarios, setUsuarios] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null);
+    const [selectedUsuario, setSelectedUsuario] = useState(null);
+    const [reload, setReload] = useState(false);
+    const [newUsuario, setNewUsuario] = useState({ Nome: '', E-mail: '', Usuario: '', Senha: '', Level: '', Status: 'off' });
+    const [openCreateDialog, setOpenCreateDialog] = useState(false);
 
     useEffect(() => {
         getAllUsers()
@@ -24,19 +27,88 @@ const UsuariosPage = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [reload]);
 
     const handleRowClick = (usuario) => {
         setSelectedUser(usuario);
     };
 
-    const handleEditUser = () => {
-        console.log("Editar usuário", selectedUser);
+    const handleInputChange = (field, value, isNew = false) =>{
+        if (isNew) {
+            setNewAluno((prev) => ({
+                ...prev,
+                [field]: value,
+            }));
+        } else {
+            setSelectedAluno((prev) => ({
+                ...prev,
+                [field]: value,
+            }))
+        }
     };
 
-    const handleAddUser = () => {
-        console.log("Adicionar usuário");
+
+
+    const handleEditUsuario = () => {
+        console.log("Editar usuário", selectedUser);
+
+        editUsuario(selectedUsuario.id, selectedUsuario)
+            .then((data) => {
+                if (data) {
+                    setReload((prev) => !prev);
+                    setSelectedUsuario(null);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Erro ao editar usuario:", error);
+                });
     };
+
+    const handleDeleteUsuario = () => {
+        if (!selectedUsuario) return;
+        deleteUsuario(selectedUsuario._id)
+            .then(() => {
+                setReload((prev) => !prev);
+                setSelectedUsuario(null);
+            })
+            .catch((error) => {
+                console.error("Erro ao excluir usuario:", error);
+            });
+    };
+
+    const handleCreateUsuario = () => {
+        createUsuario(newUsuario)
+            .then((data) => {
+                if (data) {
+                    setReload((prev) => !prev);
+                    setOpenCreateDialog(false);
+                    setNewUsuario({ Nome: '', E-mail: '', Usuario: '', Senha: '', Level: '', Status: 'off' })
+                }
+            })
+            .catch((error) => {
+                console.error("Erro ao criar aluno", error);
+            });
+    };
+
+    const handleCreateUsuario = () => {
+        createUsuario(newUsuario)
+            .then((data) => {
+                if (data) {
+                    setReload((prev) => !prev);
+                    seOpenCreateDialog(false);
+                    setNewUsuario({ Nome: '', E-mail: '', Usuario: '', Senha: '', Level: '', Status: 'off' });
+                }
+            })
+            .catch((error) => {
+                console.error("Erro ao criar usuario:", error);
+            });
+    };
+
+
+    const handleAddUsuario = () => {
+        setOpenCreateDialog(true);
+    };
+
 
     return (
         <div className="w-full h-full flex justify-center items-start p-6">
@@ -48,7 +120,7 @@ const UsuariosPage = () => {
                         </Link>
                     </Button>
                     <Button
-                        onClick={handleAddUser}
+                        onClick={handleAddUsuario}
                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300"
                     >
                         Adicionar Usuário
@@ -62,8 +134,11 @@ const UsuariosPage = () => {
                         <TableRow>
                             <TableHead hidden>id</TableHead>
                             <TableHead>Nome</TableHead>
-                            <TableHead>Mail</TableHead>
-                            <TableHead>Level</TableHead>
+                            <TableHead>E-mail</TableHead>
+                            <TableHead>Usuário</TableHead>
+                            <TableHead>Senha</TableHead>
+                            <TableHead>Nivel</TableHead>
+                            <TableHead>Status</TableHead>
                             <TableHead className="text-right">Status</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -75,66 +150,98 @@ const UsuariosPage = () => {
                                 onClick={() => handleRowClick(usuario)}
                             >
                                 <TableCell hidden>{usuario._id}</TableCell>
-                                <TableCell>{usuario.name}</TableCell>
-                                <TableCell>{usuario.email}</TableCell>
-                                <TableCell>{usuario.level}</TableCell>
+                                <TableCell>{usuario.nome}</TableCell>
+                                <TableCell>{usuario.E-mail}</TableCell>
+                                <TableCell>{usuario.Usuário}</TableCell>
+                                <TableCell>{usuario.Senha}</TableCell>
+                                <TableCell>{usuario.Nivel}</TableCell>
+                                <TableCell>{usuario.Status}</TableCell>
                                 <TableCell className="text-right">
-                                    <Checkbox className="m-3" checked={usuario.status === 'on'} />
+                                    <Checkbox 
+                                    className="m-3" 
+                                    checked={usuario.status === 'on'} />
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </div>
-            {selectedUser && (
-                <Dialog open={Boolean(selectedUser)} onOpenChange={(open) => !open && setSelectedUser(null)}>
+            {selectedUsuario && (
+                <Dialog open={Boolean(selectedUsuario)} onOpenChange={(open) => !open && setSelectedUsuario(null)}>
                     <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
                             <DialogTitle>Editar Usuário</DialogTitle>
                             <DialogDescription>
                                 Faça alterações no perfil do usuário selecionado.
-                            </DialogDescription>
+                            
+                                </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
+                            {['nome', 'e-mail', 'usuario', 'senha', 'level'].map((field) => (
+                                <div className="grid grid-cols-4 items-center gap-4" key={field}>
+                                    <Label htmlFor={field} className="text-right">{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
+                                    <Input
+                                        id={field}
+                                        value={selectedUsuario[field] || ''}
+                                        onChange={(e) => handleInputChange(field, e.target.value)}
+                                        className="col-span-3"
+                                    />
+                                </div>
+                            ))}
+
                             <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="name" className="text-right">Nome</Label>
-                                <Input
-                                    id="name"
-                                    value={selectedUser.name || ''}
-                                    onChange={(e) => setSelectedUser({ ...selectedUser, name: e.target.value })}
-                                    className="col-span-3"
-                                />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="email" className="text-right">Email</Label>
-                                <Input
-                                    id="email"
-                                    value={selectedUser.email || ''}
-                                    onChange={(e) => setSelectedUser({ ...selectedUser, email: e.target.value })}
-                                    className="col-span-3"
-                                />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="level" className="text-right">Level</Label>
-                                <Input
-                                    id="level"
-                                    value={selectedUser.level || ''}
-                                    onChange={(e) => setSelectedUser({ ...selectedUser, level: e.target.value })}
-                                    className="col-span-3"
-                                />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="level" className="text-right">Status</Label>
+                                <Label htmlFor="status" className="text-right">Status</Label>
                                 <Checkbox
                                     id="status"
-                                    checked={selectedUser.status === 'on'}
-
+                                    value={selectedUsuario.status === 'on'}
+                                    onChange={(e) => handleInputChange('status', e.target.checked ? 'on' : 'off')}
                                 />
                             </div>
                         </div>
+
                         <DialogFooter>
-                            <Button onClick={handleEditUser}>Salvar alterações</Button>
-                            <Button variant="outline" onClick={() => setSelectedUser(null)}>Cancelar</Button>
+                            <Button variant="destructive" onClick={handleDeleteUsuario}>Excluir Usuario</Button>
+                            <Button onClick={handleEditUsuario}>Salvar alterações</Button>
+                            <Button variant="outline" onClick={() => setSelectedUsuario(null)}>Cancelar</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+            )}
+
+            {openCreateDialog && (
+                <Dialog open={openCreateDialog} onOpenChange={(open) => !open && setOpenCreateDialog(false)}>
+                    <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                            <DialogTitle>Criar Novo Usuario</DialogTitle>
+                            <DialogDescription>
+                                Preencha as informações para adicionar um novo usuario.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                            {['nome', 'e-mail', 'usuario', 'senha', 'level'].map((field) => (
+                                <div className="grid grid-cols-4 items-center gap-4" key={field}>
+                                    <Label htmlFor={field} className="text-right">{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
+                                    <Input
+                                        id={field}
+                                        value={newUsuario[field] || ''}
+                                        onChange={(e) => handleInputChange(field, e.target.value, true)}
+                                        className="col-span-3"
+                                    />
+                                </div>
+                            ))}
+
+                            <div className="grid grid-cols-4 items-center gap-4">
+                                <Label htmlFor="status" className="text-right">Status</Label>
+                                <Checkbox
+                                    id="status"
+                                    onChange={(e) => handleInputChange('status', e.target.checked ? 'on' : 'off', true)}
+                                />
+                            </div>
+                        </div>
+
+                        <DialogFooter>
+                            <Button onClick={handleCreateUsuario}>Adicionar Usuario</Button>
+                            <Button variant="outline" onClick={() => setOpenCreateDialog(false)}>Cancelar</Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
