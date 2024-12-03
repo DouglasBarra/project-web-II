@@ -3,7 +3,6 @@ const cors = require('cors');
 const app = express();
 
 const professoresRoute = require('./routes/professoresRoute')
-const agendamentosRoute = require('./routes/agendamentosRoute')
 const eventosRoute = require('./routes/eventosRoute')
 const usuariosRoute = require('./routes/usuariosRoute')
 
@@ -17,7 +16,6 @@ const routes = require("./routes/router");
 app.use("/api", routes);
 
 app.use('/api', professoresRoute)
-app.use('/api', agendamentosRoute)
 app.use('/api', eventosRoute)
 app.use('/api', usuariosRoute)
 

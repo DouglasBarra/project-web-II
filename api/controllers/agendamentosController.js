@@ -1,5 +1,4 @@
-const AgendamentosModel = require("../models/AgendamentosModel");
-const Profissional = require("../models/profissionaisModel");
+const AgendamentosModel = require("../models/agendamentosModel");
 
 const AgendamentosController = {
   get: async (req, res) => {
