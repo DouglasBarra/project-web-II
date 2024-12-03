@@ -20,7 +20,7 @@ const ProfessoresController = require('../controllers/professoresController');
  *           type: string
  *           description: Nome do professor
  *         schoolDisciplines:
- *           type: array
+ *           type: string
  *           items:
  *             type: string
  *           description: Disciplinas ministradas pelo professor
@@ -67,7 +67,7 @@ const ProfessoresController = require('../controllers/professoresController');
  *         content:
  *           application/json:
  *             schema:
- *               type: array
+ *               type: string
  *               items:
  *                 $ref: '#/components/schemas/Professor'
  */
