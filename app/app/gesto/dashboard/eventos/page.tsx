@@ -161,6 +161,7 @@ const EventosPage = () => {
                                     />
                                 </div>
                             ))}
+                        </div>
 
                         <DialogFooter>
                             <Button variant="destructive" onClick={handleDeleteEvento}>Excluir Evento</Button>
@@ -192,6 +193,7 @@ const EventosPage = () => {
                                     />
                                 </div>
                             ))}
+                        </div>
 
                         <DialogFooter>
                             <Button onClick={handleCreateEvento}>Adicionar Evento</Button>
