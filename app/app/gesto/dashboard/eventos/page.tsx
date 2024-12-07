@@ -54,8 +54,8 @@ const EventosPage = () => {
             <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6">
                 <div className="flex justify-between items-center mb-6">
                     <Button variant="outline"><Link href='/gesto/dashboard'>Voltar</Link></Button>
-                    <h1>Gestão de Alunos</h1>
-                    <Button onClick={handleAddAluno}>Adicionar Aluno</Button>
+                    <h1>Gestão de Eventos</h1>
+                    <Button onClick={handleAddAluno}>Adicionar Evento</Button>
                 </div>
                 <EventoTable Eventos={eventos} onRowClick={handleRowClick} selectedEventoId={selectedEvento?._id} />
             </div>
