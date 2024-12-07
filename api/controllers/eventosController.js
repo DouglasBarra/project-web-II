@@ -39,6 +39,8 @@ const EventosController = {
     },
     update: async (req, res) => {
         try {
+            const id = req.params.id;
+
             const Evento = {
                 name: req.body.name,
                 description: req.body.description,
