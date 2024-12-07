@@ -1,204 +1,79 @@
-'use client';
+'use client'
 
-import { useState, useEffect } from 'react';
-import { Checkbox } from "@/components/ui/checkbox";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { editEvento, getAllEventos, deleteEvento, createEvento } from '@/services/eventos'; 
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
+import { useState } from 'react';
+import { useEventos } from '@/hooks/useEventos';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import EventoTable from '@/components/gesto/evento/EventoTable';
+import EventoForm from '@/components/gesto/evento/EventoForm';
 
 const EventosPage = () => {
-    const [eventos, setEventos] = useState([]);
+    const { eventos, addEvento, updateEvento, removeEvento } = useEventos();
     const [selectedEvento, setSelectedEvento] = useState(null);
-    const [reload, setReload] = useState(false);
-    const [newEvento, setNewEvento] = useState({ name: '', description: '', comments: '', date: ''});
-    const [openCreateDialog, setOpenCreateDialog] = useState(false);  // Estado para controlar o diálogo de criação
+    const [openDialog, setOpenDialog] = useState(false);
 
-    useEffect(() => {
-        getAllEventos()
-            .then((data) => {
-                if (data) {
-                    setEventos(data);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, [reload]);
-
+    // Quando clica em uma linha da tabela (editar aluno)
     const handleRowClick = (evento) => {
-        setSelectedEvento(evento);
+        setSelectedEvento(evento);   // Define o aluno selecionado
+        setOpenDialog(true);       // Abre o diálogo de edição
     };
 
-    const handleInputChange = (field, value, isNew = false) => {
-        if (isNew) {
-            setNewEvento((prev) => ({
-                ...prev,
-                [field]: value,
-            }));
+    // Atualiza o estado de um campo no formulário (criação/edição)
+    const handleFormChange = (field, value) => {
+        setSelectedEvento((prev) => ({ ...prev, [field]: value }));
+    };
+
+    // Submete o formulário (criação ou edição de aluno)
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        if (selectedEvento?._id) {
+            updateEvento(selectedEvento._id, selectedEvento);  // Atualiza aluno existente
         } else {
-            setSelectedEvento((prev) => ({
-                ...prev,
-                [field]: value,
-            }));
+            addEvento(selectedEvento);  // Cria um novo aluno
+        }
+        setOpenDialog(false);  // Fecha o diálogo após o envio
+    };
+
+    // Exclui um aluno
+    const handleDelete = () => {
+        if (selectedEvento) {
+            removeEvento(selectedEvento._id);
+            setOpenDialog(false); // Fecha o diálogo após a exclusão
         }
     };
 
-    const handleEditEvento = () => {
-        if (!selectedEvento) return;
-        console.log("Editar evento", selectedEvento);
-
-        editEvento(selectedEvento._id, selectedEvento)
-            .then((data) => {
-                if (data) {
-                    setReload((prev) => !prev);  
-                    setSelectedEvento(null); 
-                }
-            })
-            .catch((error) => {
-                console.error("Erro ao editar evento:", error);
-            });
-    };
-
-    const handleDeleteEvento = () => {
-        if (!selectedEvento) return;
-        deleteEvento(selectedEvento._id)
-            .then(() => {
-                setReload((prev) => !prev);  
-                setSelectedEvento(null);
-            })
-            .catch((error) => {
-                console.error("Erro ao excluir evento:", error);
-            });
-    };
-
-    const handleCreateEvento = () => {
-        createEvento(newEvento)
-            .then((data) => {
-                if (data) {
-                    setReload((prev) => !prev);
-                    setOpenCreateDialog(false); 
-                    setNewEvento({ name: '', description: '', comments: '', date: '' });
-                }
-            })
-            .catch((error) => {
-                console.error("Erro ao criar evento:", error);
-            });
-    };
-
-    const handleAddEvento = () => {
-        setOpenCreateDialog(true);  // Abre o diálogo de criação
+    // Função para abrir o formulário de criação de novo aluno
+    const handleAddAluno = () => {
+        setSelectedEvento(null);  // Limpa o aluno selecionado, para garantir que será um novo aluno
+        setOpenDialog(true);     // Abre o diálogo para criação
     };
 
     return (
         <div className="w-full h-full flex justify-center items-start p-6">
             <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6">
                 <div className="flex justify-between items-center mb-6">
-                    <Button variant='outline'>
-                        <Link href="/gesto/dashboard">
-                            Voltar
-                        </Link>
-                    </Button>
-                    <Button
-                        onClick={handleAddEvento}
-                        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300"
-                    >
-                        Adicionar Evento
-                    </Button>
-                    <h1 className="text-3xl font-bold text-left">Eventos</h1>
+                    <Button variant="outline"><Link href='/gesto/dashboard'>Voltar</Link></Button>
+                    <h1>Gestão de Alunos</h1>
+                    <Button onClick={handleAddAluno}>Adicionar Aluno</Button>
                 </div>
-
-                <Table className="min-w-full table-auto">
-                    <TableCaption>A lista de eventos cadastrados</TableCaption>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead hidden>id</TableHead>
-                            <TableHead>Nome</TableHead>
-                            <TableHead>Descricao</TableHead>
-                            <TableHead>Comentarios</TableHead>
-                            <TableHead>Data</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {eventos.map((evento) => (
-                            <TableRow
-                                key={evento._id}
-                                className={`hover:bg-gray-300 transition-all duration-200 font-bold ${selectedEvento?._id === evento._id ? 'bg-blue-300' : ''}`}
-                                onClick={() => handleRowClick(evento)}
-                            >
-                                <TableCell hidden>{evento._id}</TableCell>
-                                <TableCell>{evento.name}</TableCell>
-                                <TableCell>{evento.description}</TableCell>
-                                <TableCell>{evento.comments}</TableCell>
-                                <TableCell>{evento.date}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                <EventoTable Eventos={eventos} onRowClick={handleRowClick} selectedEventoId={selectedEvento?._id} />
             </div>
 
-            {selectedEvento && (
-                <Dialog open={Boolean(selectedEvento)} onOpenChange={(open) => !open && setSelectedEvento(null)}>
+            {openDialog && (
+                <Dialog open={openDialog} onOpenChange={(open) => !open && setOpenDialog(false)}>
                     <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
-                            <DialogTitle>Editar Evento</DialogTitle>
-                            <DialogDescription>
-                                Faça alterações no perfil do evento selecionado.
-                            </DialogDescription>
+                            <DialogTitle>{selectedEvento?._id ? 'Editar Evento' : 'Criar Novo Evento'}</DialogTitle>
                         </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                            {['name','description','comments','date' ].map((field) => (
-                                <div className="grid grid-cols-4 items-center gap-4" key={field}>
-                                    <Label htmlFor={field} className="text-right">{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
-                                    <Input
-                                        id={field}
-                                        value={selectedEvento[field] || ''}
-                                        onChange={(e) => handleInputChange(field, e.target.value)}
-                                        className="col-span-3"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-
-                        <DialogFooter>
-                            <Button variant="destructive" onClick={handleDeleteEvento}>Excluir Evento</Button>
-                            <Button onClick={handleEditEvento}>Salvar alterações</Button>
-                            <Button variant="outline" onClick={() => setSelectedEvento(null)}>Cancelar</Button>
-                        </DialogFooter>
-                    </DialogContent>
-                </Dialog>
-            )}
-
-            {openCreateDialog && (
-                <Dialog open={openCreateDialog} onOpenChange={(open) => !open && setOpenCreateDialog(false)}>
-                    <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
-                            <DialogTitle>Criar Novo Evento</DialogTitle>
-                            <DialogDescription>
-                                Preencha as informações para adicionar um novo evento.
-                            </DialogDescription>
-                        </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                            {['name','description','comments','date'].map((field) => (
-                                <div className="grid grid-cols-4 items-center gap-4" key={field}>
-                                    <Label htmlFor={field} className="text-right">{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
-                                    <Input
-                                        id={field}
-                                        value={newEvento[field] || ''}
-                                        onChange={(e) => handleInputChange(field, e.target.value, true)}
-                                        className="col-span-3"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-
-                        <DialogFooter>
-                            <Button onClick={handleCreateEvento}>Adicionar Evento</Button>
-                            <Button variant="outline" onClick={() => setOpenCreateDialog(false)}>Cancelar</Button>
-                        </DialogFooter>
+                        <EventoForm
+                            evento={selectedEvento || {}}  // Se não houver aluno selecionado, cria um novo
+                            onChange={handleFormChange}
+                            onDelete={handleDelete}
+                            onSubmit={handleFormSubmit}
+                            onCancel={() => setOpenDialog(false)}  // Função para cancelar e fechar o diálogo
+                            newEvento={selectedEvento?._id ? true : false}
+                        />
                     </DialogContent>
                 </Dialog>
             )}

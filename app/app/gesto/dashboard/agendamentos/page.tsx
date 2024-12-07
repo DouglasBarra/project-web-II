@@ -44,7 +44,7 @@ const AgendamentosPage = () => {
     };
 
     // Função para abrir o formulário de criação de novo aluno
-    const handleAddAluno = () => {
+    const handleAddAgendamento = () => {
         setSelectedAgendamento(null);  // Limpa o aluno selecionado, para garantir que será um novo aluno
         setOpenDialog(true);     // Abre o diálogo para criação
     };
@@ -55,7 +55,7 @@ const AgendamentosPage = () => {
                 <div className="flex justify-between items-center mb-6">
                     <Button variant="outline"><Link href='/gesto/dashboard'>Voltar</Link></Button>
                     <h1>Agendamentos</h1>
-                    <Button onClick={handleAddAluno}>Adicionar Agendamento</Button>
+                    <Button onClick={handleAddAgendamento}>Adicionar Agendamento</Button>
                 </div>
                 <AgendamentosTable Agendamentos={agendamentos} onRowClick={handleRowClick} selectedAgendamentoId={selectedAgendamento?._id} />
             </div>

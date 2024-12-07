@@ -22,18 +22,18 @@ export const useAgendamentos = () => {
         fetchAgendamentos();
     }, []);
 
-    const addAgendamento = async (newAluno) => {
+    const addAgendamento = async (newAgendamento) => {
         try {
-            await createAgendamento(newAluno);
+            await createAgendamento(newAgendamento);
             fetchAgendamentos();
         } catch (err) {
             setError('Erro ao adicionar agendamento');
         }
     };
 
-    const updateAgendamento = async (id, aluno) => {
+    const updateAgendamento = async (id, agendamento) => {
         try {
-            await editAgendamento(id, aluno);
+            await editAgendamento(id, agendamento);
             fetchAgendamentos();
         } catch (err) {
             setError('Erro ao editar agendamento');
