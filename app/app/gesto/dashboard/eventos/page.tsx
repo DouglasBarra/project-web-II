@@ -14,7 +14,7 @@ const EventosPage = () => {
     const [eventos, setEventos] = useState([]);
     const [selectedEvento, setSelectedEvento] = useState(null);
     const [reload, setReload] = useState(false);
-    const [newEvento, setNewEvento] = useState({ description: '', comments: '', date: ''});
+    const [newEvento, setNewEvento] = useState({ name: '', description: '', comments: '', date: ''});
     const [openCreateDialog, setOpenCreateDialog] = useState(false);  // Estado para controlar o diálogo de criação
 
     useEffect(() => {
@@ -81,7 +81,7 @@ const EventosPage = () => {
                 if (data) {
                     setReload((prev) => !prev);
                     setOpenCreateDialog(false); 
-                    setNewEvento({ description: '', comments: '', date: '' });
+                    setNewEvento({ name: '', description: '', comments: '', date: '' });
                 }
             })
             .catch((error) => {
@@ -116,6 +116,7 @@ const EventosPage = () => {
                     <TableHeader>
                         <TableRow>
                             <TableHead hidden>id</TableHead>
+                            <TableHead>Nome</TableHead>
                             <TableHead>Descricao</TableHead>
                             <TableHead>Comentarios</TableHead>
                             <TableHead>Data</TableHead>
@@ -129,6 +130,7 @@ const EventosPage = () => {
                                 onClick={() => handleRowClick(evento)}
                             >
                                 <TableCell hidden>{evento._id}</TableCell>
+                                <TableCell>{evento.name}</TableCell>
                                 <TableCell>{evento.description}</TableCell>
                                 <TableCell>{evento.comments}</TableCell>
                                 <TableCell>{evento.date}</TableCell>
@@ -148,7 +150,7 @@ const EventosPage = () => {
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                            {['description','comments','date' ].map((field) => (
+                            {['name','description','comments','date' ].map((field) => (
                                 <div className="grid grid-cols-4 items-center gap-4" key={field}>
                                     <Label htmlFor={field} className="text-right">{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
                                     <Input
@@ -179,7 +181,7 @@ const EventosPage = () => {
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                            {['description','comments','date'].map((field) => (
+                            {['name','description','comments','date'].map((field) => (
                                 <div className="grid grid-cols-4 items-center gap-4" key={field}>
                                     <Label htmlFor={field} className="text-right">{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
                                     <Input
