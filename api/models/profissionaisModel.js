@@ -11,4 +11,4 @@ const profissionalSchema = new Schema({
 
 const Profissional = mongoose.model("Profissionais", profissionalSchema);
 
-module.exports = Profissional;
+module.exports = Profissional

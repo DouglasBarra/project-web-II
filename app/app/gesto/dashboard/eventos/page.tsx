@@ -14,7 +14,7 @@ const EventosPage = () => {
     const [eventos, setEventos] = useState([]);
     const [selectedEvento, setSelectedEvento] = useState(null);
     const [reload, setReload] = useState(false);
-    const [newEvento, setNewEvento] = useState({ description: '', comments: '', date: ''});
+    const [newEvento, setNewEvento] = useState({ name: '', description: '', comments: '', date: ''});
     const [openCreateDialog, setOpenCreateDialog] = useState(false);  // Estado para controlar o diálogo de criação
 
     useEffect(() => {
@@ -51,7 +51,7 @@ const EventosPage = () => {
         if (!selectedEvento) return;
         console.log("Editar evento", selectedEvento);
 
-        editAluno(selectedEvento._id, selectedEvento)
+        editEvento(selectedEvento._id, selectedEvento)
             .then((data) => {
                 if (data) {
                     setReload((prev) => !prev);  
@@ -65,7 +65,7 @@ const EventosPage = () => {
 
     const handleDeleteEvento = () => {
         if (!selectedEvento) return;
-        deleteAluno(selectedEvento._id)
+        deleteEvento(selectedEvento._id)
             .then(() => {
                 setReload((prev) => !prev);  
                 setSelectedEvento(null);
@@ -76,12 +76,12 @@ const EventosPage = () => {
     };
 
     const handleCreateEvento = () => {
-        createAluno(newEvento)
+        createEvento(newEvento)
             .then((data) => {
                 if (data) {
                     setReload((prev) => !prev);
                     setOpenCreateDialog(false); 
-                    setNewEvento({ description: '', comments: '', date: '' });
+                    setNewEvento({ name: '', description: '', comments: '', date: '' });
                 }
             })
             .catch((error) => {
@@ -116,19 +116,21 @@ const EventosPage = () => {
                     <TableHeader>
                         <TableRow>
                             <TableHead hidden>id</TableHead>
+                            <TableHead>Nome</TableHead>
                             <TableHead>Descricao</TableHead>
                             <TableHead>Comentarios</TableHead>
                             <TableHead>Data</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {alunos.map((evento) => (
+                        {eventos.map((evento) => (
                             <TableRow
                                 key={evento._id}
                                 className={`hover:bg-gray-300 transition-all duration-200 font-bold ${selectedEvento?._id === evento._id ? 'bg-blue-300' : ''}`}
                                 onClick={() => handleRowClick(evento)}
                             >
                                 <TableCell hidden>{evento._id}</TableCell>
+                                <TableCell>{evento.name}</TableCell>
                                 <TableCell>{evento.description}</TableCell>
                                 <TableCell>{evento.comments}</TableCell>
                                 <TableCell>{evento.date}</TableCell>
@@ -148,7 +150,7 @@ const EventosPage = () => {
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                            {['description','comments','date' ].map((field) => (
+                            {['name','description','comments','date' ].map((field) => (
                                 <div className="grid grid-cols-4 items-center gap-4" key={field}>
                                     <Label htmlFor={field} className="text-right">{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
                                     <Input
@@ -159,6 +161,7 @@ const EventosPage = () => {
                                     />
                                 </div>
                             ))}
+                        </div>
 
                         <DialogFooter>
                             <Button variant="destructive" onClick={handleDeleteEvento}>Excluir Evento</Button>
@@ -179,7 +182,7 @@ const EventosPage = () => {
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                            {['description','comments','date'].map((field) => (
+                            {['name','description','comments','date'].map((field) => (
                                 <div className="grid grid-cols-4 items-center gap-4" key={field}>
                                     <Label htmlFor={field} className="text-right">{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
                                     <Input
@@ -190,6 +193,7 @@ const EventosPage = () => {
                                     />
                                 </div>
                             ))}
+                        </div>
 
                         <DialogFooter>
                             <Button onClick={handleCreateEvento}>Adicionar Evento</Button>

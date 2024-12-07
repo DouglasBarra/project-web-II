@@ -1,17 +1,17 @@
-const USER_BASE_API = "http://localhost:8080/api/professores";
+const USER_BASE_API = "http://localhost:8080/api/professors";
 
 export async function getAllProfessores() {
     try {
         const response = await fetch(USER_BASE_API);
         if (response.ok) {
-            const professores = await response.json();
-            return professores;
+            const professors = await response.json();
+            return professors;
         } else {
-            console.error(`Erro ao buscar professores: ${response.status} - ${response.statusText}`);
+            console.error(`Erro ao buscar professors: ${response.status} - ${response.statusText}`);
             return [];
         }
     } catch (error) {
-        console.error(`Erro ao tentar buscar os professores: ${error.message}`, error);
+        console.error(`Erro ao tentar buscar os professors: ${error.message}`, error);
         return [];
     }
 };

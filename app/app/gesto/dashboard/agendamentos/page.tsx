@@ -3,19 +3,24 @@
 import { useState, useEffect, SetStateAction } from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { getAllSchedules } from '@/services/agendamentos';
+import { editAgendamento, getAllAgendamentos, deleteAgendamento, createAgendamento } from '@/services/agendamentos';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Description } from '@radix-ui/react-dialog';
 
 const AgendamentosPage = () => {
     const [agendamentos, setAgendamentos] = useState([]);
     const [selectedSchedule, setSelectedSchedule] = useState(null);
+    const [reload, setReload] = useState(false);
+    const [newAgendamento, setNewAgendamento] = useState({ code_number: '', description: '', scheduled_date: ''});
+    const [openCreateDialog, setOpenCreateDialog] = useState(false);  // Estado para controlar o diálogo de criação
+
 
     useEffect(() => {
-        getAllSchedules()
+        getAllAgendamentos()
             .then((data) => {
                 if (data) {
                     setAgendamentos(data);
@@ -24,7 +29,7 @@ const AgendamentosPage = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [reload]);
 
     const handleRowClick = (usuario: SetStateAction<null>) => {
         setSelectedSchedule(usuario);
@@ -76,7 +81,7 @@ const AgendamentosPage = () => {
                                 <TableCell hidden>{usuario._id}</TableCell>
                                 <TableCell>{agendamentos.code_number}</TableCell>
                                 <TableCell>{agendamento.description}</TableCell>
-                                <TableCell>{agendamentos.date}</TableCell>
+                                <TableCell>{agendamentos.scheduled_date}</TableCell>
                                 <TableCell className="text-right">
                                     <Checkbox className="m-3" checked={usuario.status === 'on'} />
                                 </TableCell>

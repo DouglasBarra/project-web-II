@@ -26,7 +26,7 @@ const EventosController = {
         try {
             const novoEvento = {
                 name: req.body.name,
-                description: req.body.email,
+                description: req.body.description,
                 comments: req.body.comments,
                 date: req.body.date
             }
@@ -39,9 +39,11 @@ const EventosController = {
     },
     update: async (req, res) => {
         try {
+            const id = req.params.id;
+
             const Evento = {
                 name: req.body.name,
-                description: req.body.email,
+                description: req.body.description,
                 comments: req.body.comments,
                 date: req.body.date
             }
