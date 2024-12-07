@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { editAllProfissional, getAllProfissional, deleteProfissional, createProfissional } from '@/services/profissionais'; // Assuming createAluno exists
+import { editProfissional, getAllProfissionais, deleteProfissional, createProfissional } from '@/services/profissionais'; // Assuming createAluno exists
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
