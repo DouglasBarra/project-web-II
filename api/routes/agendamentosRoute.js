@@ -67,7 +67,7 @@ const AgendamentosController = require('../controllers/agendamentosController');
  * 
  *  
  */
-router.get('/agendamentos', AgendamentosController.get);
+router.get('/agendamentos/:id', AgendamentosController.get);
 
 /**
  * @swagger

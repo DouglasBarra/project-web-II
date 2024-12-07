@@ -22,41 +22,38 @@ const DashboardPage = () => {
             </CardContent>
           </Card>
         </Link>
-
         <Link href='/gesto/dashboard/professores'>
-        <Card>
-          <CardContent className="flex-col pt-3">
-            <h3 className="text-xl font-semibold text-gray-800">Professores</h3>
-            <p className="text-gray-600 mt-2">Gerenciar Professores</p>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardContent className="flex-col pt-3">
+              <h3 className="text-xl font-semibold text-gray-800">Professores</h3>
+              <p className="text-gray-600 mt-2">Gerenciar Professores</p>
+            </CardContent>
+          </Card>
         </Link>
-
         <Link href='/gesto/dashboard/eventos'>
-        <Card>
-          <CardContent className="flex-col pt-3">
-            <h3 className="text-xl font-semibold text-gray-800">Eventos</h3>
-            <p className="text-gray-600 mt-2">Gerenciar Eventos</p>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardContent className="flex-col pt-3">
+              <h3 className="text-xl font-semibold text-gray-800">Eventos</h3>
+              <p className="text-gray-600 mt-2">Gerenciar Eventos</p>
+            </CardContent>
+          </Card>
         </Link>
-
-        <Card>
-          <CardContent className="flex-col pt-3">
-            <h3 className="text-xl font-semibold text-gray-800">Profissionais</h3>
-            <p className="text-gray-600 mt-2">Gerenciar Profissionais</p>
-          </CardContent>
-        </Card>
-
+        <Link href='/gesto/dashboard/profissionais'>
+          <Card>
+            <CardContent className="flex-col pt-3">
+              <h3 className="text-xl font-semibold text-gray-800">Profissionais</h3>
+              <p className="text-gray-600 mt-2">Gerenciar Profissionais</p>
+            </CardContent>
+          </Card>
+        </Link>
         <Link href='/gesto/dashboard/agendamentos'>
-        <Card>
-          <CardContent className="flex-col pt-3">
-            <h3 className="text-xl font-semibold text-gray-800">Agendamentos</h3>
-            <p className="text-gray-600 mt-2">Gerenciar Agendamentos</p>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardContent className="flex-col pt-3">
+              <h3 className="text-xl font-semibold text-gray-800">Agendamentos</h3>
+              <p className="text-gray-600 mt-2">Gerenciar Agendamentos</p>
+            </CardContent>
+          </Card>
         </Link>
-
       </div>
     </div>
   );
