@@ -51,7 +51,7 @@ const EventosPage = () => {
         if (!selectedEvento) return;
         console.log("Editar evento", selectedEvento);
 
-        editAluno(selectedEvento._id, selectedEvento)
+        editEvento(selectedEvento._id, selectedEvento)
             .then((data) => {
                 if (data) {
                     setReload((prev) => !prev);  
@@ -65,7 +65,7 @@ const EventosPage = () => {
 
     const handleDeleteEvento = () => {
         if (!selectedEvento) return;
-        deleteAluno(selectedEvento._id)
+        deleteEvento(selectedEvento._id)
             .then(() => {
                 setReload((prev) => !prev);  
                 setSelectedEvento(null);
@@ -76,7 +76,7 @@ const EventosPage = () => {
     };
 
     const handleCreateEvento = () => {
-        createAluno(newEvento)
+        createEvento(newEvento)
             .then((data) => {
                 if (data) {
                     setReload((prev) => !prev);
@@ -122,7 +122,7 @@ const EventosPage = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {alunos.map((evento) => (
+                        {eventos.map((evento) => (
                             <TableRow
                                 key={evento._id}
                                 className={`hover:bg-gray-300 transition-all duration-200 font-bold ${selectedEvento?._id === evento._id ? 'bg-blue-300' : ''}`}

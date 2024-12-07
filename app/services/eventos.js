@@ -1,5 +1,3 @@
-import { TestTube } from "lucide-react";
-
 const USER_BASE_API = "http://localhost:8080/api/eventos";
 
 export async function getAllEventos() {
@@ -82,7 +80,5 @@ export async function createEvento(eventoData) {
     }
 };
 
-
-Test
 
 
