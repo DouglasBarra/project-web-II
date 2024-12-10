@@ -23,6 +23,7 @@ const EventoTable = ({ Eventos, onRowClick, selectedEventoId }) => {
                         <TableCell>{evento.name}</TableCell>
                         <TableCell>{evento.description}</TableCell>
                         <TableCell>{evento.comments}</TableCell>
+                        <TableCell>{evento.scheduled_date}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>

@@ -11,7 +11,7 @@ const EventosController = require('../controllers/eventosController');
  *         - name
  *         - description
  *         - comments
- *         - date
+ *         - scheduled_date
  *       properties:
  *         id:
  *           type: string
@@ -25,7 +25,7 @@ const EventosController = require('../controllers/eventosController');
  *         comments:
  *           type: string
  *           description: Comentários sobre o evento
- *         date:
+ *         scheduled_date:
  *           type: string
  *           format: date
  *           description: Data do evento
@@ -33,7 +33,7 @@ const EventosController = require('../controllers/eventosController');
  *         name: "Visita da Unesc"
  *         description: "Visitação dos alunos da Unesc à Associação"
  *         comments: "Visita feita com professores e alunos"
- *         date: "2024-06-22"
+ *         scheduled_date: "2024-06-22"
  */
 
 /**

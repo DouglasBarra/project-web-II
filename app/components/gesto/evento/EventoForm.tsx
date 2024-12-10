@@ -6,7 +6,7 @@ const EventoForm = ({ evento, onChange, onSubmit, onDelete, onCancel, newEvento}
     return (
         <form onSubmit={onSubmit}>
             <div className="grid gap-4 py-4">
-                {['name', 'description', 'comments'].map((field) => (
+                {['name', 'description', 'comments', 'scheduled_date'].map((field) => (
                     <div className="grid grid-cols-4 items-center gap-4" key={field}>
                         <Label htmlFor={field} className="text-right">{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
                         <Input

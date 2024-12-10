@@ -17,7 +17,7 @@ const EventosService = {
             eventoData.name,
             eventoData.description,
             eventoData.comments,
-            eventoData.date,
+            eventoData.scheduled_date,
         );
 
         eventos.push(novoEvento);

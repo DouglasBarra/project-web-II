@@ -28,7 +28,7 @@ const EventosController = {
                 name: req.body.name,
                 description: req.body.description,
                 comments: req.body.comments,
-                date: req.body.date
+                scheduled_date: req.body.scheduled_date
             }
             const response = await EventoModel.create(novoEvento);
             res.status(201).json({ response, msg: "Evento criado com sucesso!" })
@@ -45,7 +45,7 @@ const EventosController = {
                 name: req.body.name,
                 description: req.body.description,
                 comments: req.body.comments,
-                date: req.body.date
+                scheduled_date: req.body.scheduled_date
             }
             const updatedEvento = await EventoModel.findByIdAndUpdate(id, Evento);
 

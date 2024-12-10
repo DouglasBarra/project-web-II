@@ -23,7 +23,7 @@ const AgendamentosController = require('../controllers/agendamentosController');
  *           type: string
  *           description: Descricao do agendamento
  *         scheduled_date:
- *           type: string
+ *           type: date
  *           description: Data e hora do agendamento
  *         profissional:
  *           type: string
