@@ -1,4 +1,4 @@
-const USER_BASE_API = "http://localhost:8080/api/professors";
+const USER_BASE_API = "http://localhost:8080/api/professores";
 
 export async function getAllProfessores() {
     try {

@@ -17,7 +17,7 @@ const ProfessoresController = {
   getAll: async (req, res) => {
     try {
       const professores = await ProfessoresModel.find();
-      res.json(professor);
+      res.json(professores);
     } catch (error) {
       res.status(500).json(error);
     }
