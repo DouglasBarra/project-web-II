@@ -4,7 +4,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 const AlunosTable = ({ alunos, onRowClick, selectedAlunoId }) => {
     return (
         <Table className="min-w-full table-auto">
-            <TableCaption>A lista de alunos cadastrados</TableCaption>
+            <TableCaption>Alunos cadastrados</TableCaption>
             <TableHeader>
                 <TableRow>
                     <TableHead hidden>id</TableHead>

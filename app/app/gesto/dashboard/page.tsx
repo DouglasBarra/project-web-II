@@ -9,8 +9,8 @@ const DashboardPage = () => {
         <Link href='/gesto/dashboard/usuarios'>
           <Card>
             <CardContent className="flex-col pt-3">
-              <h3 className="text-xl font-semibold text-gray-800">Usuarios</h3>
-              <p className="text-gray-600 mt-2">Gerenciar Usuarios</p>
+              <h3 className="text-xl font-semibold text-gray-800">Usuários</h3>
+              <p className="text-gray-600 mt-2">Gerenciar Usuários</p>
             </CardContent>
           </Card>
         </Link>

@@ -8,7 +8,7 @@ const ProfessoresTable = ({ Professores, onRowClick, selectedProfessoresId }) =>
                 <TableRow>
                     <TableHead hidden>id</TableHead>
                     <TableHead>Nome</TableHead>
-                    <TableHead>Discplinas</TableHead>
+                    <TableHead>Disciplinas</TableHead>
                     <TableHead>Contato</TableHead>
                     <TableHead>Telefone</TableHead>
                     <TableHead>Status</TableHead>

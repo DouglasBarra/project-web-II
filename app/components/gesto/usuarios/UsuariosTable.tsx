@@ -3,13 +3,13 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 const UsuarioTable = ({ Usuarios, onRowClick, selectedUsuarioId }) => {
     return (
         <Table className="min-w-full table-auto">
-            <TableCaption>Usuarios cadastrados</TableCaption>
+            <TableCaption>Usuários cadastrados</TableCaption>
             <TableHeader>
                 <TableRow>
                     <TableHead hidden>id</TableHead>
                     <TableHead>Nome</TableHead>
                     <TableHead>E-mail</TableHead>
-                    <TableHead>Usuario</TableHead>
+                    <TableHead>Usuário</TableHead>
                     <TableHead>Level</TableHead>
                     <TableHead>Status</TableHead>
                 </TableRow>

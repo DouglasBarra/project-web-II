@@ -3,7 +3,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 const EventoTable = ({ Eventos, onRowClick, selectedEventoId }) => {
     return (
         <Table className="min-w-full table-auto">
-            <TableCaption>Agendamentos cadastrados</TableCaption>
+            <TableCaption>Eventos cadastrados</TableCaption>
             <TableHeader>
                 <TableRow>
                     <TableHead hidden>id</TableHead>
