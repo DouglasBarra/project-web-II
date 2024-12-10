@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { loginUser } from "@/services/usuarioslogin";
+import { loginUser } from "@/services/usuarios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

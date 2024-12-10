@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { RegisterUser } from "@/services/usuarioslogin";
+import { RegisterUser } from "@/services/usuarios";
 
 const RegisterPage = () => {
     const [email, setMail] = useState('');
@@ -55,19 +55,7 @@ const RegisterPage = () => {
                         id="name"
                         value={name}
                         required
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Nome completo" 
-                        className="w-full" 
-                    />
-                    <Input 
-                        type="email"
-                        id="email"
-                        value={email}
-                        required
-                        onChange={(e) => setMail(e.target.value)}
-                        placeholder="Email" 
-                        className="w-full" 
-                    />
+                        onChange={(e) => setName(e.target.value)}usuarioslogin
                     <Input 
                         type="password"
                         id="password"
