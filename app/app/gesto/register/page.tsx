@@ -50,12 +50,22 @@ const RegisterPage = () => {
                             {error}
                         </div>
                     )}
+                    <Input
+                        type="email"
+                        id="email"
+                        value={email}
+                        required
+                        onChange={(e) => setMail(e.target.value)}
+                        placeholder="E-mail"
+                        className="w-full"/>
                     <Input 
                         type="name"
                         id="name"
                         value={name}
                         required
-                        onChange={(e) => setName(e.target.value)}usuarioslogin
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Nome"
+                        className="w-full"/>
                     <Input 
                         type="password"
                         id="password"
