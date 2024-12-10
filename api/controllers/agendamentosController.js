@@ -27,7 +27,7 @@ const AgendamentosController = {
       const Agendamento = {
         code_number: req.body.code_number,
         description: req.body.description,
-        schedule_date: req.body.schedule_date,
+        scheduled_date: req.body.scheduled_date,
         profissional: req.body.profissional
       }
       const response = await AgendamentosModel.create(Agendamento);

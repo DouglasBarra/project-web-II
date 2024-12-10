@@ -65,7 +65,7 @@ const UsuarioPage = () => {
                     <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
                             <DialogTitle>{selectedUsuario?._id ? 'Editar Usuário' : 'Criar Novo Usuário'}</DialogTitle>
-                        </DialogHeader>
+                        </DialogHeader>UsuarioForm
                         <UsuarioForm
                             usuario={selectedUsuario || {}}  // Se não houver aluno selecionado, cria um novo
                             onChange={handleFormChange}
